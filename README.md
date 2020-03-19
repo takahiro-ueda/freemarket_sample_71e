@@ -23,10 +23,6 @@ Things you may want to cover:
 
 * ...
 
-### Association
-- belongs_to :user_address
-- belongs_to :shipping_address
-
 ## User_addressテーブル（住所）
 |Column|Type|Options|
 |------|----|-------|
@@ -110,17 +106,14 @@ Things you may want to cover:
 |------|----|-------|
 |seller_id|references|null: false, foreign_key: true|
 |buyer_id|references|null: true, foreign_key: true|
-|items_conditions_id|references|null: false, foreign_key: true|
 |size_id|references|null: false, foreign_key: true|
 |category_id|references|null: false, foreign_key: true|
-|delivery_method_id|references|null: false, foreign_key: true|
-|delivery_burden_id|references|null: false, foreign_key: true|
-|item_status_id|references|null: false, foreign_key: true|
-|delivery_date_id|references|null: false, foreign_key: true|
+|delivery_id|references|null: false, foreign_key: true|
 |brand_id|references|null: false, foreign_key: true|
 |name|string|null:false|
 |introduction|string|null:false|
 |price|string|null:false|
+|status|string|null: false|
 |value|string|null:false|
 |deal_closed_date|date|null:true|
 
@@ -129,9 +122,7 @@ Things you may want to cover:
 - belongs_to :items_condition
 - belongs_to :size
 - belongs_to :category
-- belongs_to :delivery_method
-- belongs_to :delivery_burden
-- belongs_to :item_status
+- belongs_to :delivery
 - belongs_to :delivery_date
 - belongs_to :brand
 - has_many :item_images, dependent: :destroy
@@ -154,7 +145,7 @@ Things you may want to cover:
 ### Association
 - has_many :items
 
-## item_imagesテーブル（商品イメージ）
+## Item_imagesテーブル（商品イメージ）
 |Column|Type|Options|
 |------|----|-------|
 |item_id|references|null: false, foreign_key: true|
@@ -162,14 +153,6 @@ Things you may want to cover:
 
 ### Association
 - belongs_to :item
-
-## Items_conditionsテーブル（商品の状態）
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-
-### Association
-- has_many :items
 
 ## sizesテーブル（商品のサイズ）
 |Column|Type|Options|
@@ -179,34 +162,12 @@ Things you may want to cover:
 ### Association
 - has_many :lower_categories
 
-## delivery_methodテーブル（配達方法）
+## deliveryテーブル（配達）
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false|
-
-### Association
-- has_many :items
-
-## delivery_burdenテーブル（配送手数料）
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-
-### Association
-- has_many :items
-
-## item_statusテーブル（取引のステータス）
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-
-### Association
-- has_many :items
-
-## delivery_dateテーブル（配送日付）
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
+|method|string|null: false|
+|burden|string|null: false|
+|date|date|null: false|
 
 ### Association
 - has_many :items
