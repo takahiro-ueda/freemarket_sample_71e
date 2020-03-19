@@ -23,11 +23,6 @@ Things you may want to cover:
 
 * ...
 
-## Prefectureテーブル（都道府県）
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-
 ### Association
 - belongs to :user_address
 - belongs to :shipping_address
@@ -45,6 +40,7 @@ Things you may want to cover:
 |address|string|null:false|
 |building_name|string|null:false|
 |zip_code|integer(7)|null:false|
+|user_id|references|null:false, foreign_key: true|
 
 ### Association
 - belongs to :prefecture
@@ -63,6 +59,7 @@ Things you may want to cover:
 |address|string|null: false|
 |building_name|string|null: false|
 |zip_code|string|null: false|
+|user_id|references|null:false, foreign_key: true|
 
 ### Association
 - belongs to :prefectures
@@ -75,6 +72,7 @@ Things you may want to cover:
 |security_code|integer|null: false|
 |expiration_date_year|integer|null: false|
 |expiration_date_month|integer|null: false|
+|user_id|references|null:false, foreign_key: true|
 
 ### Association
 - belongs to :user
@@ -91,9 +89,9 @@ Things you may want to cover:
 |birthday_day|datetime|null: false|
 
 ### Association
-- belongs to :credit
-- belongs to :user address
-- belongs to :shipping address
+- has_one :credit
+- has_one :user address
+- has_one :shipping address
 - has many :items
 - has many :comments
 
@@ -113,7 +111,6 @@ Things you may want to cover:
 |------|----|-------|
 |seller_id|references|null: false, foreign_key: true|
 |buyer_id|references|null: false, foreign_key: true|
-|item_image_id|references|null: false, foreign_key: true|
 |items_conditions_id|references|null: false, foreign_key: true|
 |size_id|references|null: false, foreign_key: true|
 |top_category_id|references|null: false, foreign_key: true|
@@ -123,7 +120,7 @@ Things you may want to cover:
 |delivery_burden_id|references|null: false, foreign_key: true|
 |item_status_id|references|null: false, foreign_key: true|
 |delivery_date_id|references|null: false, foreign_key: true|
-|brand|string|null:true|
+|brand_id|references|null: false, foreign_key: true|
 |name|string|null:false|
 |introduction|string|null:false|
 |price|string|null:false|
@@ -145,40 +142,28 @@ Things you may want to cover:
 - has_many :item_images, dependent: :destroy
 - has_many :comments, dependent: :destroy
 
-## Top_categorysテーブル（大カテゴリー）
+## Brandsテーブル（ブランド）
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
 
 ### Association
 - has_many :items
-- has_many :middle_categories
 
-## Middle_categorysテーブル（中カテゴリー）
+## Categorysテーブル（カテゴリー）
 |Column|Type|Options|
 |------|----|-------|
-|top_category_id|references|null:false, forgin_key: true|
 |name|string|null: false|
+|ancestry|string|
 
 ### Association
-- has_many :items
-- has_many :lower_categories
-- belongs_to :top_category
-
-## Lower_categorysテーブル（小カテゴリー）
-|Column|Type|Options|
-|------|----|-------|
-|middle_category_id|references|null:false, forgin_key: true|
-|name|string|null: false|
-
-### Association
-- has_many :items
-- belongs_to :middle_category
 - belongs_to :size
+- has_many :items
 
 ## item_imagesテーブル（商品イメージ）
 |Column|Type|Options|
 |------|----|-------|
+|items_id|references|null: false, foreign_key: true|
 |image|string|null: false|
 
 ### Association
