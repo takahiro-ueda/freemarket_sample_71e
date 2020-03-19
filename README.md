@@ -24,8 +24,8 @@ Things you may want to cover:
 * ...
 
 ### Association
-- belongs to :user_address
-- belongs to :shipping_address
+- belongs_to :user_address
+- belongs_to :shipping_address
 
 ## User_addressテーブル（住所）
 |Column|Type|Options|
@@ -43,8 +43,8 @@ Things you may want to cover:
 |user_id|references|null:false, foreign_key: true|
 
 ### Association
-- belongs to :prefecture
-- belongs to :user
+- belongs_to :prefecture
+- belongs_to :user
 
 ## Shipping_addressテーブル（送付先住所）
 |Column|Type|Options|
@@ -62,8 +62,8 @@ Things you may want to cover:
 |user_id|references|null:false, foreign_key: true|
 
 ### Association
-- belongs to :prefectures
-- belongs to :user
+- belongs_to :prefectures
+- belongs_to :user
 
 ## creditsテーブル（クレジットカード）
 |Column|Type|Options|
@@ -75,12 +75,11 @@ Things you may want to cover:
 |user_id|references|null:false, foreign_key: true|
 
 ### Association
-- belongs to :user
+- belongs_to :user
 
 ## Usersテーブル（会員）
 |Column|Type|Options|
 |------|----|-------|
-|credits_id|reference|null: false|
 |email|string|null: false|
 |nickname|string|null: false|
 |password|string|null: false|
@@ -90,21 +89,21 @@ Things you may want to cover:
 
 ### Association
 - has_one :credit
-- has_one :user address
-- has_one :shipping address
-- has many :items
-- has many :comments
+- has_one :user_address
+- has_one :shipping_address
+- has_many :items
+- has_many :comments
 
 ## commentsテーブル（コメント）
 |Column|Type|Options|
 |------|----|-------|
-|item_id|references|foreign_key: true|
-|user_id|references|foreign_key: true|
+|item_id|references|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
 |text|string|null: false|
 
 ### Association
-- belongs to :user
-- belongs to :item
+- belongs_to :user
+- belongs_to :item
 
 ## Itemsテーブル（商品）
 |Column|Type|Options|
@@ -113,9 +112,7 @@ Things you may want to cover:
 |buyer_id|references|null: false, foreign_key: true|
 |items_conditions_id|references|null: false, foreign_key: true|
 |size_id|references|null: false, foreign_key: true|
-|top_category_id|references|null: false, foreign_key: true|
-|middle_category_id|references|null: false, foreign_key: true|
-|lower_category_id|references|null: false, foreign_key: true|
+|category_id|references|null: false, foreign_key: true|
 |delivery_method_id|references|null: false, foreign_key: true|
 |delivery_burden_id|references|null: false, foreign_key: true|
 |item_status_id|references|null: false, foreign_key: true|
@@ -131,9 +128,7 @@ Things you may want to cover:
 - belongs_to :user
 - belongs_to :items_condition
 - belongs_to :size
-- belongs_to :top_category
-- belongs_to: middle_category
-- belongs_to :lower_category
+- belongs_to :category
 - belongs_to :delivery_method
 - belongs_to :delivery_burden
 - belongs_to :item_status
@@ -157,7 +152,6 @@ Things you may want to cover:
 |ancestry|string|
 
 ### Association
-- belongs_to :size
 - has_many :items
 
 ## item_imagesテーブル（商品イメージ）
@@ -180,7 +174,7 @@ Things you may want to cover:
 ## sizesテーブル（商品のサイズ）
 |Column|Type|Options|
 |------|----|-------|
-|lower_category_id|references|null: false, forgin_key: true|
+|category_id|references|null: false, forgin_key: true|
 |size|integer|null: false|
 
 ### Association
