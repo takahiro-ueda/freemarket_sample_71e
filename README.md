@@ -195,7 +195,7 @@ Things you may want to cover:
 ### Association
 - has_many :items
 
-## item-statusテーブル（取引のステータス）
+## item_statusテーブル（取引のステータス）
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
