@@ -187,6 +187,62 @@
       }
     }
   }
+  &__pickupcontainer{
+    padding: 80px 0 0;
+    background-color: #f8f8f8;
+    height: 100%;
+    .head{
+      text-align: center;
+      font-size: 28px;
+      line-height: 1.4;
+      font-weight: bold;
+      color: #000;
+    }
+    .productbox{
+      .producthead{
+        text-align: center;
+        a{
+          text-decoration: none;
+          font-size: 24px;
+          color: #3CCaCE;
+        }
+      }
+      .productlists{
+        width: 780px;
+        margin: 26px auto;
+        display: flex;
+        justify-content: space-around;
+        .productlist{
+          width: 220px;
+          display: inline-block;
+          float: left;
+          background-color: white;
+          &--body{
+            background-color: white;
+            color: #333;
+            padding: 16px;
+            .name{
+              overflow: hidden;
+              line-height: 1.5;
+              font-size: 16px;
+              text-align: left;
+            }
+            .details{
+              ul{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+              }
+            }
+            p{
+              font-size: 10px;
+              text-align: left;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 .appbanner{
