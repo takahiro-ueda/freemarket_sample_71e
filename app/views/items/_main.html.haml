@@ -76,6 +76,56 @@
           = image_tag 'icon-04.png', height: '100%', width: '100%'
         %h3.item__subtitle 様々な支払いに対応
         %p.item__detail お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
+
+  %section.main__pickupcontainer
+    %h2.head ピックアップカテゴリー
+    .productbox
+      .producthead
+        %a(href="#")
+          %h3.title 新規投稿商品
+      .productlists
+        .productlist
+          %a(href="productlist")
+            %figure
+              = image_tag 'product3.png', height: '140px', width: '156px'
+            .productlist--body
+              %h3.name productlist3
+              .details
+                %ul
+                  %li 30000円
+                  %li
+                    -# = icon('far', 'far-star', class: "likeicon")
+                    = image_tag 'star.svg', height: '15px', width: '15px'
+                    0
+                %p (税込)
+        .productlist
+          %a(href="productlist")
+            %figure
+              = image_tag 'product2.png', height: '140px', width: '156px'
+            .productlist--body
+              %h3.name productlist2
+              .details
+                %ul
+                  %li 20000円
+                  %li
+                    -# = icon('far', 'far-star', class: "likeicon")
+                    = image_tag 'star.svg', height: '15px', width: '15px'
+                    0
+                %p (税込)
+        .productlist
+          %a(href="productlist")
+            %figure
+              = image_tag 'product1.png', height: '140px', width: '156px'
+            .productlist--body
+              %h3.name productlist1
+              .details
+                %ul
+                  %li 10000円
+                  %li
+                    -# = icon('far', 'far-star', class: "likeicon")
+                    = image_tag 'star.svg', height: '15px', width: '15px'
+                    0
+                %p (税込)
 %aside.appbanner
   .inner
     %h2.inner__title だれでもかんたん、人生を変えるフリマアプリ
