@@ -123,7 +123,6 @@ Things you may want to cover:
 - belongs_to :size
 - belongs_to :category
 - belongs_to :delivery
-- belongs_to :delivery_date
 - belongs_to :brand
 - has_many :item_images, dependent: :destroy
 - has_many :comments, dependent: :destroy
