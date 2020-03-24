@@ -1,0 +1,333 @@
+* {
+  box-sizing: border-box;
+}
+@mixin list-btn {
+  min-height: 48px;
+  display: block;
+  padding: 16px;
+  font-size: 14px;
+  color: #333;
+  background-color: #fff;
+  position: relative;
+  text-decoration: none;
+}
+@mixin list-icon {
+  font-size: 20px;
+  position: absolute;
+  top: 18px;
+  right: 16px;
+  color: #ccc;
+}
+
+main {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f6f6f6;
+  overflow: scroll;
+}
+.list-container {
+  width: 1020px;
+  margin: 40px auto 0 ;
+  &__list-side {
+    float: left;
+    width: 280px;
+    margin-right: 40px;
+  }
+  &__mypage-nav {
+    margin: 0 ;
+    padding: 0;
+  }
+  &__list-content {
+    float: right;
+    width: 700px;
+  }
+}
+
+.nav-list {
+  list-style: none;
+  & li {
+    margin: 1px 0;
+  }
+  & a {
+    @include list-btn;
+  }
+  & a:hover {
+    background: #f9f9f9; 
+  }
+  & i {
+    @include list-icon;
+  }
+  & a:hover i {
+    transition: all ease-out .3s;
+    transform: translate(70%, 0);
+    color: #111;
+  }
+}
+.nav-head {
+  font-size: 16px;
+  margin: 40px 0 0;
+  & span {
+    font-weight: bold;
+  }
+}
+.mypage-user {
+  padding: 20px;
+  position: relative;
+  height: 200px;
+  background: url(https://www.mercari.com/jp/assets/img/mypage/user-bg.jpg?28454652);
+  background-size: cover;
+  text-align: center;
+  &__img {
+    margin: 0 auto;
+    overflow: hidden;
+    & img {
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+    }
+  }
+  & a {
+    display: block;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    color: #333;
+    text-decoration: none;
+    & h2 {
+      margin: 8px 0 0;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .user-status {
+      margin: 8px 0 0;
+      &__sell {
+        margin-left: 16px;
+      }
+      & div {
+        display: inline-block;
+        font-size: 13px;
+      }
+      & span {
+        font-weight: bold;
+        margin-left: 8px;
+        font-size: 13px;
+      }
+    }
+  }
+  & a:hover {
+    opacity: .8;
+    text-decoration: underline;
+  }
+}
+.mypage-tab-container-todo {
+  background: #fff;
+  &__mypage-tabs {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #eee;
+  }
+  &__tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    width: 50%;
+    height: 80px;
+  }
+  &__tab-content {
+    display: flex;
+    width: 100%;
+    & ul {
+      width:100%;
+    }
+  }
+}
+.mypage-tab-container {
+  margin-top: 40px;
+  background: #fff;
+  &__head {
+    line-height: 72px;
+    padding: 0 16px;
+    font-weight: bold;
+  }
+  &__mypage-tabs {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #eee;
+  }
+  &__tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    width: 50%;
+    height: 80px;
+  }
+  &__tab-content {
+    display: flex;
+    width: 100%;
+    & ul {
+      width:100%;
+    }
+  }
+}
+.mypage-list-item {
+  border-bottom: 1px solid #eee;
+  &__link {
+    position: relative;
+    display: block;
+    display: flex;
+    padding: 16px;
+    color: #333;
+  }
+  &__thumbnail {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    position: relative;
+    width: 48px;
+    height: 48px;
+    & img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      width: 100%;
+    }
+  }
+  &__text {
+    position: relative;
+    margin-left: 20px;
+    margin-right: 40px;
+    & div {
+      height: 42px;
+      width: 560px;
+    }
+    & time {
+      position: absolute;
+      top: 42px;
+      left: 2px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      & i {
+        margin-right: 8px;
+      }
+      & span {
+        font-size: 12px;
+      }
+    }
+  }
+  &__icon {
+    font-size: 20px;
+    position: absolute;
+    right: 20px;
+    top: 33%;
+  }
+}
+.all-view {
+  padding: 16px;
+  &__link {
+    display: block;
+    height: 56px;
+    margin: 0 auto;
+    background-color: #eee;
+    line-height: 56px;
+    text-align: center;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+  }
+}
+
+aside {
+  background-image: url(http://furima.tokyo/assets/bg-appBanner-pict-ce684a4c4d5fa2da43c30a3839923591af75a642a3a906ad975065771ef3d72f.jpg);
+  background-size: cover;
+  background-position: center;
+  padding: 100px 40px;
+  position: relative;
+}
+.inner-box {
+  color: white;
+  text-align: center;
+  &__title {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.4;
+    text-shadow: 0 0 5px rgba(0,0,0,0.4)
+  }
+  &__text {
+    font-size: 35px;
+    text-shadow: 0 0 5px rgba(0,0,0,0.4)
+  }
+  &__icon {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px auto 0;
+    & img {
+      width: 180px;
+    }
+    & img:hover {
+      opacity: .5;
+    }
+    &__btn-a {
+      margin-right: 10px;
+    }
+  }
+}
+.sell-btn {
+  width: 120px;
+  padding: 15px;
+  text-align: center;
+  background-color: #3ccace;
+  border-radius: 4%;
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  &__text {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    margin-bottom: 5px;
+  }
+  &__icon {
+    width: 60%;
+  }
+}
+.sell-btn:hover {
+  opacity: .8;
+}
+
+// logout
+.logout-content {
+  float: right;
+  width: 700px;
+  background: #fff;
+  padding: 64px;
+  &__box {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  &__link {
+    text-decoration: none;
+  }
+  &__btn {
+    width: 100%;
+    background: #3ccace;
+    color: white;
+    display: block;
+    line-height: 48px;
+    font-size: 12px;
+    transition: all ease-out .3s;
+    cursor: pointer;
+    text-align: center;
+  }
+}
