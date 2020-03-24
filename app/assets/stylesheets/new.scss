@@ -1,0 +1,153 @@
+// Place all the styles related to the items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+// Place all the styles related to the items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+// @import "items";
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: #f8f8f8;
+}
+
+.header {
+  width: 100%;
+  height: 128px;
+  background-color: #f8f8f8;
+  &__logo {
+    text-align: center;
+    margin: 0 auto;
+    line-height: 12;
+  }
+}
+
+.container {
+  .main {
+    padding: 20px;
+    .item-content {
+      width: 900px;
+      margin: 0 auto;
+      background-color: white;
+      border-bottom: solid 1px #f8f8f8;
+      padding: 40px;
+      &__fild{
+        .note {
+          color: gray;
+          font-size: 14px;
+          font-weight: 600;
+        }
+        &__dt{
+          display: flex;
+          padding-top: 20px;
+          &__label {
+            font-size: 14px;
+            margin-left: 10px;
+            font-weight: 600;
+          }
+          &__required {
+            font-size: 11px;
+            background-color: #ff0211;
+            height: 18px;
+            color: white;
+            padding: 0 3px;
+            border-radius: 2px;
+            margin-left: 10px;
+            font-weight: 600;
+          }
+          &__any {
+            font-size: 11px;
+            background-color: #bfbfbf;
+            height: 18px;
+            color: white;
+            padding: 0 3px;
+            border-radius: 2px;
+            margin-left: 10px;
+            font-weight: 600;
+          }
+        }
+      }
+      &__files {
+        display: flex;
+        margin: 0 auto;
+        margin-left: 40px;
+        margin-top: 10px;
+        background-color: white;
+        &__image-col {
+          height: 180px;
+          width: 180px;
+          background-color: #f8f8f8;
+          margin-right: 10px;
+          border: solid 1px gray;
+        }
+      }
+        &__text-fild input {
+          width: 90%;
+          height: 45px;
+          margin: 1%;
+          padding: 10px;
+          border: solid 1px #ccc;
+          border-radius: 5px;
+        }
+      
+        &__text-area textarea {
+          width: 90%;
+          height: 200px;
+          margin: 1%;
+          padding: 10px;
+          border: solid 1px #ccc;
+          border-radius: 5px;
+        }
+        &__text-select select {
+          width: 90%;
+          height: 45px;
+          margin: 1%;
+          padding: 10px;
+          border: solid 1px #ccc;
+          border-radius: 5px;
+          background-color: white;
+        }
+      &__reactid {
+        text-align: center;
+        .sellbtn{
+          background-color: #3CCACE;
+          font-size: 17px;
+          color: #fff;
+          width: 50%;
+          height: 70px;
+          margin: 30px 0;
+          border-radius: 5px;
+          font-weight: 600;
+          border: none;
+        }
+        a {
+          text-decoration: none;
+          margin-top: 20px;
+          color:#0095ee;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+.footer {
+  &__conditions {
+    display: flex;
+    justify-content: center;
+    h5 {
+      margin: 10px;
+      font-size: 12px;
+      text-align: center;
+    }
+  }
+  &__logo{
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+  p {
+    text-align: center;
+    font-size: 13px;
+  }
+}
