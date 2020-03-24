@@ -12,7 +12,7 @@
   text-decoration: none;
 }
 @mixin list-icon {
-  font-weight: 600;
+  font-size: 20px;
   position: absolute;
   top: 18px;
   right: 16px;
@@ -29,7 +29,6 @@ main {
 .list-container {
   width: 1020px;
   margin: 40px auto 0 ;
-  // background-color: #666;
   &__list-side {
     float: left;
     width: 280px;
@@ -42,7 +41,6 @@ main {
   &__list-content {
     float: right;
     width: 700px;
-    background-color: #fff;
   }
 }
 
@@ -62,7 +60,8 @@ main {
   }
   & a:hover i {
     transition: all ease-out .3s;
-    transform: translate(50%, 0); 
+    transform: translate(70%, 0);
+    color: #111;
   }
 }
 .nav-head {
@@ -79,6 +78,15 @@ main {
   background: url(https://www.mercari.com/jp/assets/img/mypage/user-bg.jpg?28454652);
   background-size: cover;
   text-align: center;
+  &__img {
+    margin: 0 auto;
+    overflow: hidden;
+    & img {
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+    }
+  }
   & a {
     display: block;
     position: absolute;
@@ -87,15 +95,6 @@ main {
     right: 0;
     color: #333;
     text-decoration: none;
-    & figure {
-      margin: 0 auto;
-      overflow: hidden;
-      & img {
-        height: 60px;
-        width: 60px;
-        border-radius: 50%;
-      }
-    }
     & h2 {
       margin: 8px 0 0;
       font-size: 11px;
@@ -122,14 +121,15 @@ main {
     text-decoration: underline;
   }
 }
-.mypage-tab-container {
+.mypage-tab-container-todo {
+  background: #fff;
   &__mypage-tabs {
     width: 100%;
     display: flex;
     justify-content: space-between;
     background-color: #eee;
   }
-  & li {
+  &__tab {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -140,8 +140,113 @@ main {
   &__tab-content {
     display: flex;
     width: 100%;
+    & ul {
+      width:100%;
+    }
   }
 }
+.mypage-tab-container {
+  margin-top: 40px;
+  background: #fff;
+  &__head {
+    line-height: 72px;
+    padding: 0 16px;
+    font-weight: bold;
+  }
+  &__mypage-tabs {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #eee;
+  }
+  &__tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    width: 50%;
+    height: 80px;
+  }
+  &__tab-content {
+    display: flex;
+    width: 100%;
+    & ul {
+      width:100%;
+    }
+  }
+}
+.mypage-list-item {
+  border-bottom: 1px solid #eee;
+  &__link {
+    position: relative;
+    display: block;
+    display: flex;
+    padding: 16px;
+    color: #333;
+  }
+  &__thumbnail {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    position: relative;
+    width: 48px;
+    height: 48px;
+    & img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      width: 100%;
+    }
+  }
+  &__text {
+    position: relative;
+    margin-left: 20px;
+    margin-right: 40px;
+    & div {
+      height: 42px;
+      width: 560px;
+    }
+    & time {
+      position: absolute;
+      top: 42px;
+      left: 2px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      & i {
+        margin-right: 8px;
+      }
+      & span {
+        font-size: 12px;
+      }
+    }
+  }
+  &__icon {
+    font-size: 20px;
+    position: absolute;
+    right: 20px;
+    top: 33%;
+  }
+}
+.all-view {
+  padding: 16px;
+  &__link {
+    display: block;
+    height: 56px;
+    margin: 0 auto;
+    background-color: #eee;
+    line-height: 56px;
+    text-align: center;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+  }
+}
+
 aside {
   background-image: url(http://furima.tokyo/assets/bg-appBanner-pict-ce684a4c4d5fa2da43c30a3839923591af75a642a3a906ad975065771ef3d72f.jpg);
   background-size: cover;
@@ -199,4 +304,30 @@ aside {
 }
 .sell-btn:hover {
   opacity: .8;
+}
+
+// logout
+.logout-content {
+  float: right;
+  width: 700px;
+  background: #fff;
+  padding: 64px;
+  &__box {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  &__link {
+    text-decoration: none;
+  }
+  &__btn {
+    width: 100%;
+    background: #3ccace;
+    color: white;
+    display: block;
+    line-height: 48px;
+    font-size: 12px;
+    transition: all ease-out .3s;
+    cursor: pointer;
+    text-align: center;
+  }
 }

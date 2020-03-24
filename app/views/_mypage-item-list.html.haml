@@ -1,0 +1,14 @@
+%ul#mypage-item-list
+  %li.mypage-list-item
+    =link_to '#', class: "mypage-list-item__link" do
+      %figure.mypage-list-item__thumbnail
+        %img(src="https://i.gyazo.com/c86857d4a2dd7892863161b654bb7ba6.png" alt="")/
+      %div.mypage-list-item__text
+        %div
+        %time
+          = icon('fas', 'fa-clock-o')
+          %span １日前
+      =icon('fas', 'angle-right', class: 'mypage-list-item__icon')
+  %li.all-view
+    =link_to '#', class: "all-view__link" do
+      一覧を見る

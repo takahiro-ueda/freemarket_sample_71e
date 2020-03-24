@@ -105,40 +105,11 @@
             = link_to new_test_path, class: "list-item" do
               ログアウト
               = icon('fas', 'angle-right')
-    %div.list-container__list-content
-      %section.mypage-user
-        =link_to '#' do
-          %figure.mypage-user__img
-            %img(src="https://static.mercdn.net/images/member_photo_noimage_thumb.png" alt="")/
-          %h2 USER NAME
-          %div.user-status
-            %div.user-status__review
-              評価
-              %span 00
-            %div.user-status__sell
-              出品数
-              %span 00
-      %section.mypage-tab-container-todo
-        %ul.mypage-tab-container-todo__mypage-tabs
-          %li.mypage-tab-container-todo__tab
-            %a(href="#")
-            お知らせ
-          %li.mypage-tab-container-todo__tab
-            %a(href="#")
-            やることリスト
-        %div.mypage-tab-container-todo__tab-content
-          = render 'item-list'
-      %section.mypage-tab-container
-        %h2.mypage-tab-container__head 購入した商品
-        %ul.mypage-tab-container__mypage-tabs
-          %li.mypage-tab-container__tab
-            %a(href="#")
-            取引中
-          %li.mypage-tab-container__tab
-            %a(href="#")
-            過去の取引
-        %div.mypage-tab-container__tab-content
-          = render 'item-list'
+    %div.logout-content
+      %div.logout-content__box
+      =link_to '#', class: "logout-content__link" do
+        %button.logout-content__btn{type: 'submit'}
+          ログアウト
 %aside.banner
   %div.inner-box
     %h2.inner-box__title だれでもかんたん、人生を変えるフリマアプリ
@@ -152,8 +123,3 @@
   %div.sell-btn
     %p.sell-btn__text 出品する
     %img.sell-btn__icon(src="http://furima.tokyo/assets/icon_camera-968c5ebaa05319bf1e2ad7508f852dd712504a4d26a1930d8bd87ec03ebcc37a.svg" alt="")/
-
-
-:javascript
-
-  

@@ -1,0 +1,135 @@
+// payment
+* {
+  box-sizing: border-box;
+}
+
+.payment-container {
+  float: right;
+  width: 700px;
+}
+.payment-title {
+  &__box {
+    background: #fff;
+    font-size: 24px;
+    line-height: 50px;
+    font-weight: bold;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+.payment-content {
+  margin-top: 2px;
+  padding: 40px 60px;
+  background: #fff;
+  &__box {
+    width: 600px;
+  }
+  &__title {
+    width: 300px;
+    margin: 0 auto;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #fff;
+    padding-top: 20px;
+  }
+  &__link {
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px 130px;
+    border-bottom: 2px solid #eee;
+    &__btn {
+      width: 100%;
+      background: #3ccace;
+      display: block;
+      line-height: 48px;
+      font-size: 12px;
+      transition: all ease-out .3s;
+      cursor: pointer;
+      text-align: center;
+      a {
+        color: white;
+        font-size: 14px;
+        text-decoration: none;
+      }
+    }
+    :hover {
+      opacity: .8;
+    }
+  }
+  &__text {
+    height: 60px;
+    width: 100%;
+    font-size: 14px;
+    color: rgb(43, 110, 255);
+    position: relative;
+    &__box {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+// card-input
+.pay-card-container {
+  float: right;
+  width: 700px;
+}
+.pay-card-title {
+  &__box {
+    background: #fff;
+    font-size: 24px;
+    line-height: 50px;
+    font-weight: bold;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+.pay-card-content {
+  margin-top: 2px;
+  padding: 40px 60px;
+  background: #fff;
+  form {
+    width: 350px;
+    margin: 0 auto;
+  }
+}
+.pay-card-number {
+  .number {
+    width: 100%;
+    height: 50px;
+  }
+  &__icon-list {
+    margin-top: 8px;
+    font-size: 0;
+    list-style: none;
+    display: block;
+    li {
+      display: inline-block;
+      img {
+        height: 20px;
+        width: 49px;
+      }
+    }
+  }
+}
+.pay-card-limit-title {
+  font-weight: bold;
+}
+.pay-card-limit {
+  display: flex;
+  width: 100%;
+  height: 70px;
+  margin-top: 10px;
+  &__month {
+    // display: inline-block;
+    width: 50%;
+  }
+  &__year {
+    // display: inline-block;
+    width: 50%;
+  }
+}
