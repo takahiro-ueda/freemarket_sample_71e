@@ -23,14 +23,14 @@ Things you may want to cover:
 
 * ...
 
-## User_addressテーブル（住所）
+## User_addressesテーブル（住所）
 |Column|Type|Options|
 |------|----|-------|
 |family_name|string|null: false|
 |first_name|string|null: false|
 |family_name_kana|string|null:false|
 |first_name_kana|string|null:false|
-|tel|string|null:false|
+|tel|integer|null:false|
 |prefectures_id|string|null:false|
 |municipality|string|null:false|
 |address|string|null:false|
@@ -42,7 +42,7 @@ Things you may want to cover:
 - belongs_to :prefecture
 - belongs_to :user
 
-## Shipping_addressテーブル（送付先住所）
+## Shipping_addressesテーブル（送付先住所）
 |Column|Type|Options|
 |------|----|-------|
 |family_name|string|null: false|
@@ -58,7 +58,7 @@ Things you may want to cover:
 |user_id|references|null:false, foreign_key: true|
 
 ### Association
-- belongs_to :prefectures
+- belongs_to :prefecture
 - belongs_to :user
 
 ## creditsテーブル（クレジットカード）
@@ -79,9 +79,7 @@ Things you may want to cover:
 |email|string|null: false|
 |nickname|string|null: false|
 |password|string|null: false|
-|birth_year|datetime|null: false|
-|birthday_month|datetime|null: false|
-|birthday_day|datetime|null: false|
+|birth_date|datetime|null: false|
 
 ### Association
 - has_one :credit
@@ -135,7 +133,7 @@ Things you may want to cover:
 ### Association
 - has_many :items
 
-## Categorysテーブル（カテゴリー）
+## Categoriesテーブル（カテゴリー）
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
@@ -159,7 +157,7 @@ Things you may want to cover:
 |size|integer|null: false|
 
 ### Association
-- has_many :lower_categories
+- has_many :categories
 
 ## deliveryテーブル（配達）
 |Column|Type|Options|
