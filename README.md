@@ -44,11 +44,9 @@ Things you may want to cover:
 ## creditsテーブル（クレジットカード）
 |Column|Type|Options|
 |------|----|-------|
-|number|integer|null: false|
-|security_code|integer|null: false|
-|expiration_date_year|integer|null: false|
-|expiration_date_month|integer|null: false|
 |user_id|references|null:false, foreign_key: true|
+|customer_id|string|null:false|
+|number|integer|null: false|
 
 ### Association
 - belongs_to :user
@@ -63,8 +61,7 @@ Things you may want to cover:
 
 ### Association
 - has_one :credit
-- has_one :user_address
-- has_one :shipping_address
+- has_one :address
 - has_many :items
 - has_many :comments
 
@@ -120,7 +117,6 @@ Things you may want to cover:
 |ancestry|string|
 
 ### Association
-- has_many :items
 - belongs_to :size
 
 ## Item_imagesテーブル（商品イメージ）
@@ -136,7 +132,7 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |category_id|references|null: false, foreign_key: true|
-|size|integer|null: false|
+|size|string|null: false|
 
 ### Association
 - has_many :categories
