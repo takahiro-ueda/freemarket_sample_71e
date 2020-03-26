@@ -17,12 +17,12 @@ ActiveRecord::Schema.define(version: 2020_03_25_092813) do
     t.string "first＿name", null: false
     t.string "family_name_kana", null: false
     t.string "first_name_kana", null: false
-    t.integer "tel", null: false
+    t.string "tel"
     t.integer "prefecture_id", null: false
     t.integer "zip_code", null: false
     t.string "municipality", null: false
     t.string "address", null: false
-    t.string "building_name", null: false
+    t.string "building_name"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

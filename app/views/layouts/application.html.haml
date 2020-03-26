@@ -25,12 +25,15 @@
           %li{:class => "pcHeader__headerInner__nav__listLeft__item"}
             %a(href="#")ブランド
         %ul{:class => "pcHeader__headerInner__nav__listRight"}
+          %if user_signed_in?
+            = link_to "マイページ", new_user_session_path
+          %else
           %li{:class => "pcHeader__headerInner__nav__listLeft__first"}
             = link_to "ログイン", new_user_session_path
           %li{:class => "pcHeader__headerInner__nav__listLeft__item"}
             %a(href="/users/sign_up")
             = link_to "新規会員登録", new_user_registration_path
-            
+
   %body
     = yield
   %footer{:class => "pcFooter"}

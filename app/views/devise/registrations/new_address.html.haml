@@ -24,8 +24,8 @@
       .address-page__inner__field
         .address-page__inner__field__label
           = f.label :電話番号
-        .address-page__inner__field__nonull
-          %p 必須
+        .address-page__inner__field__null
+          %p 任意
         .address-page__inner__field__input
           = f.telephone_field	 :tel
       .address-page__inner__field
@@ -34,7 +34,7 @@
         .address-page__inner__field__nonull
           %p 必須
         .address-page__inner__field__input
-          = f.collection_select :prefectures_id, Prefecture.all, :id, :name, prompt: "",class: "prefecture"
+          = f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: "",class: "prefecture"
       .address-page__inner__field
         .address-page__inner__field__label
           = f.label :郵便番号

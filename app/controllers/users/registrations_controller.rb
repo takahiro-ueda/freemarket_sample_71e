@@ -7,6 +7,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
     @user = User.new
+    @results = Address.where('prefecture_id IN(?)', params[:prefecture_id])
+    super
   end
 
   # POST /resource
@@ -23,7 +25,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create_address
-    @results = Address.where('prefecture_id IN(?)', params[:prefecture_id])
     @user = User.new(session["devise.regist_data"]["user"])
     @address = Address.new(address_params)
     unless @address.valid?
@@ -67,7 +68,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def address_params
-    params.require(:address).permit(:family_name,:first＿name,:family_name_kana,:first_name_kana,:tel,:prefectures_id,:zip_code,:municipality,:address,:building_name)
+    params.require(:address).permit(:family_name,:first＿name,:family_name_kana,:first_name_kana,:tel,:prefecture_id,:zip_code,:municipality,:address,:building_name)
   end
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
