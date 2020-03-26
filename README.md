@@ -23,42 +23,22 @@ Things you may want to cover:
 
 * ...
 
-## User_addressesテーブル（住所）
+## addressesテーブル（住所）
 |Column|Type|Options|
 |------|----|-------|
 |family_name|string|null: false|
 |first_name|string|null: false|
 |family_name_kana|string|null:false|
 |first_name_kana|string|null:false|
-|tel|integer|null:false|
-|prefectures_id|string|null:false|
+|prefecture_id|integer|null:false|
 |municipality|string|null:false|
 |address|string|null:false|
-|building_name|string|null:false|
 |zip_code|integer(7)|null:false|
 |user_id|references|null:false, foreign_key: true|
+|tel|integer|null:true|
+|building_name|string|null:true|
 
 ### Association
-- belongs_to :prefecture
-- belongs_to :user
-
-## Shipping_addressesテーブル（送付先住所）
-|Column|Type|Options|
-|------|----|-------|
-|family_name|string|null: false|
-|first_name|string|null: false|
-|family_name_kana|string|null: false|
-|fast_name_kana|string|null: false|
-|tel|integer|null: false|
-|prefectures_id|references|null: false, foreign_key:true|
-|municipality|string|null: false|
-|address|string|null: false|
-|building_name|string|null: false|
-|zip_code|string|null: false|
-|user_id|references|null:false, foreign_key: true|
-
-### Association
-- belongs_to :prefecture
 - belongs_to :user
 
 ## creditsテーブル（クレジットカード）
@@ -110,7 +90,7 @@ Things you may want to cover:
 |brand_id|references|null: false, foreign_key: true|
 |name|string|null:false|
 |introduction|string|null:false|
-|price|string|null:false|
+|price|integer|null:false|
 |status|string|null: false|
 |value|string|null:false|
 |deal_closed_date|date|null:true|
@@ -141,6 +121,7 @@ Things you may want to cover:
 
 ### Association
 - has_many :items
+- belongs_to :size
 
 ## Item_imagesテーブル（商品イメージ）
 |Column|Type|Options|
@@ -154,6 +135,7 @@ Things you may want to cover:
 ## sizesテーブル（商品のサイズ）
 |Column|Type|Options|
 |------|----|-------|
+|category_id|references|null: false, foreign_key: true|
 |size|integer|null: false|
 
 ### Association

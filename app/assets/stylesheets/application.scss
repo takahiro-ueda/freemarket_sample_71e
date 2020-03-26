@@ -71,6 +71,10 @@
         &__first{
           text-decoration: none;
           padding: 0;
+
+          &__categories{
+            display: none;
+          }
         }
         &__item{
           padding: 0 0 0 16px;
