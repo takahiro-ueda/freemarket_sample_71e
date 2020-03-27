@@ -3,11 +3,12 @@
 @import "font-awesome";
 @import "main";
 @import "user";
-@import "user_adresses";
+@import "user_addresses";
 @import "card";
 @import "items";
 @import "new";
 @import "show";
+@import "mypage";
 
 .pcHeader{
   padding: 0 60px;
@@ -171,5 +172,3 @@
     margin: 0 auto;
   }
 }
-@import "mypage";
-@import "user_addresses";
