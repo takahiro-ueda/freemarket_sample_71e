@@ -7,10 +7,10 @@ FactoryBot.define do
     first_name_kana       {"ケンタ"}
     tel                   {"00000000000"}
     prefecture_id        {"1"}
-    municipality          {"浅口市金光町"}
-    address               {"大谷１９４４"}
-    building_name         {"フジハイツ"}
-    zip_code              {"7190111"}
+    municipality          {"大阪市"}
+    address               {"中央区難波5丁目1−60"}
+    building_name         {"なんばスカイオ15階"}
+    zip_code              {"0000000"}
     user_id               {"1"}
   end
 
