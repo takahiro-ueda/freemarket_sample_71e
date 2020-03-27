@@ -4,7 +4,7 @@ class Address < ApplicationRecord
   belongs_to :user, optional: true
   
   validates :prefecture_id,:municipality,:address,presence: true
-  validates :family_name,:first＿name, presence: true,
+  validates :family_name,:first_name, presence: true,
             format:  {with: /\A[ぁ-んァ-ヶー一-龠]+\z/, message: "全角で入力してください"}   
   validates :family_name_kana, :first_name_kana, presence: true,
             format:  {with: /\A([ァ-ン]|ー)+/, message: "カタカナ以外の文字が入力されています"}   
