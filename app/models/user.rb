@@ -9,7 +9,5 @@ class User < ApplicationRecord
   has_one :address
   has_many :items
   has_many :comments
-
-
-  validates :nickname, length: { maximum: 6 }
 end
+
