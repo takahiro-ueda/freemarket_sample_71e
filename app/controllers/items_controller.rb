@@ -4,9 +4,19 @@ class ItemsController < ApplicationController
   end
 
   def new
+    @item = Item.new
+    @item.item_images.new
   end
 
   def create
+    # binding.pry
+    @item = Item.new(item_params)
+    # binding.pry
+    if @item.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
   
   def edit
@@ -24,6 +34,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
+    params.require(:item).permit(:name, :price, :introduction, item_images_attributes: :image [2])
   end
 
   def set_item
