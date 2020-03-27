@@ -84,7 +84,7 @@ Things you may want to cover:
 |size_id|references|null: false, foreign_key: true|
 |category_id|references|null: false, foreign_key: true|
 |delivery_id|references|null: false, foreign_key: true|
-|brand_id|references|null: false, foreign_key: true|
+|brand_id|references|null: true, foreign_key: true|
 |name|string|null:false|
 |introduction|string|null:false|
 |price|integer|null:false|
