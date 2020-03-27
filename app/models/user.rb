@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :nickname,:birth_date, presence: true
-  validates :nickname, length: { maximum: 6 }
+  has_one :credit
   has_one :address
+  validates :nickname, length: { maximum: 6 }
 end
