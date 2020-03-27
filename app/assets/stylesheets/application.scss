@@ -8,8 +8,6 @@
 @import "items";
 @import "new";
 @import "show";
-@import "user_addresses";
-@import "mypage";
 
 .pcHeader{
   padding: 0 60px;
@@ -169,3 +167,5 @@
     margin: 0 auto;
   }
 }
+@import "user_addresses";
+@import "mypage";

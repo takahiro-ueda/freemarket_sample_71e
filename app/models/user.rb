@@ -7,5 +7,7 @@ class User < ApplicationRecord
   validates :nickname,:birth_date, presence: true
   has_one :credit
   has_one :address
+  has_many :items
+  has_many :comments
   validates :nickname, length: { maximum: 6 }
 end
