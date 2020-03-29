@@ -10,6 +10,12 @@
         .item-content__fild__dt
           .item-content__fild__dt__label 出品画像
           .item-content__fild__dt__required 必須
+        .image-from
+          = form_for @item do |f|
+            = f.text_field :name
+            = f.fields_for :item_images do |i|
+              = i.file_field :image
+            = f.submit
       .item-content__files
         .item-content__files__image-col
           = image_tag src="/assets/icon_camera.png", size: "100x100"
