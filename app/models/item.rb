@@ -1,6 +1,5 @@
 class Item < ApplicationRecord
   belongs_to :user
-  belongs_to :items_condition
   belongs_to :size
   belongs_to :category
   belongs_to :delivery
@@ -8,5 +7,5 @@ class Item < ApplicationRecord
   has_many :item_images, dependent: :destroy
   accepts_nested_attributes_for :item_images, allow_destroy: true
   has_many :comments, dependent: :destroy
-  validates :size, :category, :delivery, :name, :introduction, :price, :status, presence: true
+  validates :delivery_id, :name, :introduction, :price, :status, :seller_id, presence: true
 end

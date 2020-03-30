@@ -4,12 +4,17 @@ class ItemsController < ApplicationController
   end
 
   def new
+    # @delivery = Delivery.all
+    # @brand = Brand.all
+    # @size = Size.all
+    # @category = Category.all
     @item = Item.new
     @item.item_images.new
   end
 
   def create
     @item = Item.new(item_params)
+    # binding.pry
     if @item.save
       redirect_to root_path
     else
@@ -32,7 +37,17 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :price, :introduction, item_images_attributes: [:image])
+    params.require(:item).permit(
+      :name, 
+      :price, 
+      :introduction, 
+      :category_id,
+      :delivery_id,
+      :size_id,
+      :status,
+      :brand_id,
+      item_images_attributes: [:image]
+      ).merge(seller_id: 1)
   end
 
   def set_item
