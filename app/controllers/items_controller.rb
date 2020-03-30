@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
   end
 
   def new
-    # @delivery = Delivery.all
     # @brand = Brand.all
     # @size = Size.all
     # @category = Category.all
@@ -15,7 +14,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     # binding.pry
-    if @item.save
+    if @item.save!
       redirect_to root_path
     else
       render :new
@@ -42,7 +41,10 @@ class ItemsController < ApplicationController
       :price, 
       :introduction, 
       :category_id,
-      :delivery_id,
+      :delivery_method,
+      :shipping_payer,
+      :shipping_duration,
+      :shipping_area,
       :size_id,
       :status,
       :brand_id,
