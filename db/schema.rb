@@ -62,14 +62,6 @@ ActiveRecord::Schema.define(version: 2020_03_26_105420) do
     t.index ["user_id"], name: "index_credits_on_user_id"
   end
 
-  create_table "deliveries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "method", null: false
-    t.string "burden", null: false
-    t.date "date", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "image", null: false
     t.datetime "created_at", null: false
@@ -81,22 +73,24 @@ ActiveRecord::Schema.define(version: 2020_03_26_105420) do
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "size_id"
     t.bigint "category_id", null: false
-    t.bigint "delivery_id", null: false
     t.bigint "brand_id"
     t.string "name", null: false
     t.string "introduction", null: false
     t.integer "price", null: false
     t.string "status", null: false
     t.string "value"
+    t.string "shipping_payer", null: false
+    t.string "delivery_method", null: false
+    t.string "shipping_duration", null: false
+    t.string "shipping_area", null: false
     t.date "deal_closed_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "seller_id"
+    t.bigint "seller_id", null: false
     t.bigint "buyer_id"
     t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["buyer_id"], name: "index_items_on_buyer_id"
     t.index ["category_id"], name: "index_items_on_category_id"
-    t.index ["delivery_id"], name: "index_items_on_delivery_id"
     t.index ["seller_id"], name: "index_items_on_seller_id"
     t.index ["size_id"], name: "index_items_on_size_id"
   end
@@ -131,7 +125,6 @@ ActiveRecord::Schema.define(version: 2020_03_26_105420) do
   add_foreign_key "item_images", "items"
   add_foreign_key "items", "brands"
   add_foreign_key "items", "categories"
-  add_foreign_key "items", "deliveries"
   add_foreign_key "items", "sizes"
   add_foreign_key "items", "users", column: "buyer_id"
   add_foreign_key "items", "users", column: "seller_id"

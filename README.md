@@ -83,13 +83,16 @@ Things you may want to cover:
 |buyer_id|references|null: true, foreign_key: true|
 |size_id|references|null: false, foreign_key: true|
 |category_id|references|null: false, foreign_key: true|
-|delivery_id|references|null: false, foreign_key: true|
 |brand_id|references|null: true, foreign_key: true|
 |name|string|null:false|
 |introduction|string|null:false|
 |price|integer|null:false|
 |status|string|null: false|
 |value|string|null:false|
+|shipping_payer|string|null:false|
+|delivery_method|string|null:false|
+|shipping_duration|string|null:false|
+|shipping_area|string|null:false|
 |deal_closed_date|date|null:true|
 
 ### Association
@@ -136,13 +139,3 @@ Things you may want to cover:
 
 ### Association
 - has_many :categories
-
-## deliveryテーブル（配達）
-|Column|Type|Options|
-|------|----|-------|
-|method|string|null: false|
-|burden|string|null: false|
-|date|date|null: false|
-
-### Association
-- has_many :items

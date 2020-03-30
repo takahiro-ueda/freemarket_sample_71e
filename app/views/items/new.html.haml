@@ -70,23 +70,24 @@
           .item-content__fild__dt__label 商品の状態
           .item-content__fild__dt__required 必須
         .item-content__text-select
-          = f.select :status, [["上物",1],["普通",2],["粗悪",3]]
+          = f.select :status, [["上物","新品"],["普通","未使用"],["粗悪","キズあり"]]
           -# %select{:name => "カテゴリー", :size => ""}
     -# 配送について/配送の負担/発送の方法/発送元の地域/発送までの日数
     .item-content
+      -# .item-content__fild
+      -#   %p.note 配送について
+      -#   .item-content__fild__dt
+      -#     .item-content__fild__dt__label 配送の負担
+      -#     .item-content__fild__dt__required 必須
+      -#   .item-content__text-select
+      -#     = f.collection_select :delivery_id, Delivery.all, :id, :burden
+      -#     %select{:name => "カテゴリー", :size => ""}
       .item-content__fild
-        %p.note 配送について
         .item-content__fild__dt
-          .item-content__fild__dt__label 配送の負担
+          .item-content__fild__dt__label 発送の方法
           .item-content__fild__dt__required 必須
         .item-content__text-select
           = f.collection_select :delivery_id, Delivery.all, :id, :method
-      -#     %select{:name => "カテゴリー", :size => ""}
-      -# .item-content__fild
-      -#   .item-content__fild__dt
-      -#     .item-content__fild__dt__label 発送の方法
-      -#     .item-content__fild__dt__required 必須
-      -#   .item-content__text-select
       -#     %select{:name => "カテゴリー", :size => ""}
       -# .item-content__fild
       -#   .item-content__fild__dt
@@ -99,6 +100,7 @@
       -#     .item-content__fild__dt__label 発送までの日数
       -#     .item-content__fild__dt__required 必須
       -#   .item-content__text-select
+      -#     = f.collection_select :delivery_id, Delivery.all, :id, :date
       -#     %select{:name => "カテゴリー", :size => ""}
     -# 価格/出品ボタン/もどるリンク
     .item-content
