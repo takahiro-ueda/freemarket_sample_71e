@@ -105,7 +105,7 @@
                     %p (税込)
           -else
             .productlist
-              %p{:class => "soldout"} SOLD OUT
+              %p.soldout SOLD OUT
               %figure
                 - item.item_images.each do |itemsImage|
                   = image_tag itemsImage.image, height: '140px', width: '156px'
