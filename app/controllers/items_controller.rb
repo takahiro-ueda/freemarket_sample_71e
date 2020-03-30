@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   def index
-    # @parents = Category.all.order("id ASC").limit(13)
+    @items = Item.all.includes(:item_images).order(created_at: "DESC").limit(3)
   end
 
   def new
@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
 
   def create
   end
-  
+
   def edit
   end
 

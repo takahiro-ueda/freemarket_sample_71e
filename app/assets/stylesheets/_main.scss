@@ -216,6 +216,13 @@
           display: inline-block;
           float: left;
           background-color: white;
+
+          .soldout{ /* 2020/3/28 高田追記 */
+            background-color: red;
+            color: white;
+            text-align: center;
+          }
+
           &--body{
             background-color: white;
             color: #333;
