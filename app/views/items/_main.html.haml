@@ -87,7 +87,7 @@
         - @items.each do |item|
           -if item.status == "売り出し中"
             .productlist
-              %a(href="productlist")
+              = link_to "productlist" do
                 %figure
                   - item.item_images.each do |itemsImage|
                     = image_tag itemsImage.image, height: '140px', width: '156px'
