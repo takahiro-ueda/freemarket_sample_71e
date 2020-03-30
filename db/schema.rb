@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 2020_03_26_105420) do
     t.date "deal_closed_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "seller_id", null: false
+    t.bigint "seller_id"
     t.bigint "buyer_id"
     t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["buyer_id"], name: "index_items_on_buyer_id"
