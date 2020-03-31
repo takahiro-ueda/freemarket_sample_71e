@@ -31,15 +31,22 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
+    @user = User.find(@item.seller_id)
+    @category = @item.category
+    @size = @item.size
+    @status = Status.find(@item.status_id)
+    @delivery = Delivery.find(@item.delivery_id)
+    @payer = Payer.find(@item.payer_id)
+    @prefecture = Prefecture.find(@item.prefecture_id)
+    @duration = Duration.find(@item.duration_id)
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user)
   end
 
   def destroy
-    if @item.destroy
-      redirect_to root_path, notice: '削除に成功しました。'
-    else
-      flash.now[:alert] = '削除に失敗しました。'
-      render :edit
-    end
+    item = Item.find(params[:id])
+    item.destroy
   end
 
   private
@@ -64,6 +71,10 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def set_items_image
+    @items = Item.includes(:images).order(:item_purchaser_id, "id DESC")
   end
   
 end

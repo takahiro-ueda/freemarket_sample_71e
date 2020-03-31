@@ -20,15 +20,14 @@
               font-size: 34px;
             }
           }
-          &__body {
+          &__image {
             margin: 16px 0 0;
             display: flex;
-            width: 700px;
+            width: 100%;
             ul {
               display: flex;
               position: relative;
               li {
-                display: flex;
                 flex-direction: column;
                 width: 560px;
                 align-items: center;
@@ -40,8 +39,10 @@
                 display: flex;
                 justify-content: center;
                 margin-top: 10px;
+                width: 100%;
                 li {
                   margin: 0px 10px;
+                  float: right;
                 }
               }
             }
@@ -55,26 +56,55 @@
               font-size: 46px;
               font-weight: bold;
               margin: 0 10px 0 0;
+              color: black;
             }
             &__detail {   
               span {
                 font-size: 16px;
                 padding: 10px 0;
+                color: black;
               }
+            }
+            .price-btn {
+              text-decoration: none;
+              font-size: 18px;
+              color: #ffffff;
             }
             &__button {
               line-height: 48px;
-              background-color: red;
-              border: 2px solid red;
+              background-color: #3CCACE;;
+              border: 2px solid #3CCACE;;
               width: 80%;
-              font-size: 18px;
               border-radius: 100px;
               margin: auto;
               margin-bottom: 20px;
               margin-top: 20px;
-              a {
-                color: #ffffff;
+            }
+            &__seller {
+              .item-seller-button {
                 text-decoration: none;
+                font-size: 18px;
+                color: #ffffff;
+              }
+              &__edit {
+                line-height: 48px;
+                background-color: #3CCACE;;
+                border: 2px solid #3CCACE;;
+                width: 80%;
+                border-radius: 100px;
+                margin: auto;
+                margin-bottom: 20px;
+                margin-top: 20px;
+              }
+              &__destroy {
+                line-height: 48px;
+                background-color: #3CCACE;;
+                border: 2px solid #3CCACE;;
+                width: 80%;
+                border-radius: 100px;
+                margin: auto;
+                margin-bottom: 20px;
+                margin-top: 20px;
               }
             }
           }   
@@ -176,12 +206,19 @@
           &__commentBox {
             &__new {
               width: 100%;
-              &__comment {
-                width: 100%;
-                height: 100px;
-                min-height: 104px;
-                padding: 10px;
-                border: solid 1px black;
+              &__text {
+                textarea {
+                  margin: 0 auto;
+                  display: block;
+                  resize: none;
+                  width:600px;
+                  height:100px;
+                  padding: 10px;
+                  border: 1px solid #ccc;      
+                  font-size: 16px;
+                  line-height: 1.5;
+                  box-sizing: border-box;        
+                }
               }
               &__noticeMsg {
                 padding: 8px;
@@ -190,48 +227,47 @@
                 margin: 10px 0;
                 text-align: left;
               }
+              .comment-btn {
+                color: #fff;
+                text-decoration: none;
+              }
               &__Btn {
                 font-size: 18px;
                 line-height: 48px;
                 background: #3CCACE;
                 border: 2px solid #3CCACE;
-                color: #fff;
                 width: 60%;
                 font-size: 18px;
                 border-radius: 100px;
                 margin: auto;
-                a {
-                  color: #fff;
-                  text-decoration: none;
-                }
               }
             }
+          }
+          &__comments {
+            margin-top: 20px;
           }
         }
         &__links {
           display: flex;
           justify-content: space-between;
-
-          &__before {
+          .icon {
+            padding: 4px;
+          }
+          .before {
             color: #3CCACE;;
-            a {
+            text-decoration: none;
+          }
+          &__before {
+            span {
               text-decoration: none;
-              color: #3CCACE;
             }
+          }
+          .after {
+            color: #3CCACE;
+            text-decoration: none;
           }
           &__after {
             display: flex;
-            color: #3CCACE;
-            .icon {
-              padding: 4px;
-            }
-            a {
-              text-decoration: none;
-              color: #3CCACE;
-            }
-            &__arrow{
-              background-color: #ffffff;
-            }
           }
         }
         &__relatedItems {

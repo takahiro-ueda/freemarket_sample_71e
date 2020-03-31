@@ -9,6 +9,7 @@
 @import "new";
 @import "show";
 @import "mypage";
+@import "destroy";
 
 .pcHeader{
   padding: 0 60px;
@@ -101,9 +102,6 @@
 }
 
 .pcFooter{
-  position: fixed;
-  bottom: 0px;
-  z-index: 1;
   color: white;
   width: 100%;
   background-color: #333333;

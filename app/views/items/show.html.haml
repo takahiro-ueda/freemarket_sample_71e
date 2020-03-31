@@ -3,107 +3,132 @@
     .main__show__contents
       .main__show__contents__range
         .main__show__contents__range__item
-          .main__show__contents__range__item__name
-            %h2
-              NIKE tシャツ
-          .main__show__contents__range__item__body
+          .main__show__contents__range__item__name    
+            %h2.item-name 
+              = @item.name
+          .main__show__contents__range__item__image
           %ul
-            %li 
-              <img src="https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png" width="100%" height="100%">
-            .main__show__contents__range__item__body__sub
-              %ul
-                %li
-                  <img src="https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png">
-                %li
-                  <img src="https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/11/a005.png">
-                %li
-                  <img src="https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/12/a006.png">
+            %li.image
+              = image_tag "#{@item.item_images.first.image}", class: :main_image, height: '100%', width: '100%'
+            .main__show__contents__range__item__image__sub
+            %ul  
+            - @item.item_images.each do |image|
+              = image_tag "#{image.image}", class: :sub_image, height: '150', width: '150'
           .main__show__contents__range__item__price
-            %span
-              ¥30,000
+            %span.price 
+              = "#{@item.price}円"
             .main__show__contents__range__item__price__detail
-              %span
-                (税込）
-              %span
-                送料込み
-            .main__show__contents__range__item__price__button
-              %a( href= "#") 購入する 
+              %span (税込）
+              %span 送料込み
+            - if user_signed_in? && @item.seller_id != current_user.id           
+              = link_to "#", class: "price-btn " do
+                .main__show__contents__range__item__price__button
+                  %span.price-btn 
+                  購入画面に進む 
+            - elsif user_signed_in? && @item.seller_id == current_user.id
+              .main__show__contents__range__item__price__seller
+                = link_to edit_item_path(@item.id), class: "item-seller-button" do    
+                  .main__show__contents__range__item__price__seller__edit
+                    %span.item-seller-button 
+                    この商品を編集    
+                = link_to item_path(@item.id), method: :delete, class: "item-seller-button" do
+                  .main__show__contents__range__item__price__seller__destroy
+                    %span.item-seller-button 
+                    この商品を削除
+            - else
+              = link_to new_user_session_path, class: "price-btn " do
+                .main__show__contents__range__item__price__button
+                  %span.price-btn 
+                  購入画面に進む         
           .main__show__contents__range__item__Detail
-            親譲りの無鉄砲で小供の時から損ばかりしている。小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。新築の二階から首を出していたら、同級生の一人が冗談に、いくら威張っても、そこから飛び降りる事は出来まい。弱虫やーい。と囃したからである。小使に負ぶさって帰って来た時、おやじが大きな眼をして二階ぐらいから飛び降りて腰
+            = @item.introduction
+            /ここからアイテム情報の表
           .main__show__contents__range__item__table 
             %table
               %tbody
                 %tr
-                  %th
-                    出品者
-                  %td
-                    hoge
+                  %th 出品者
+                  %td 
+                    = @user.nickname
                 %tr
-                  %th
-                    カテゴリー  
+                  %th カテゴリー  
                   %td
-                    %a( href= "#") メンズ
+                    = link_to "#" do 
+                      = @category.root.name
+                    %br 
+                    = link_to "#" do  
+                      = @category.parent.name
                     %br
-                    %a( href= "#") カットソー
-                    %br
-                    %a( href= "#") 半袖
+                    = link_to "#" do
+                      = @category.name 
                 %tr
-                  %th
-                    ブランド
-                  %td
-                    シャネル
+                  %th ブランド
+                  %td 
+                    = @item.brand
                 %tr
-                  %th
-                    商品の状態
+                  %th 商品サイズ
                   %td
-                    新品/未使用
+                    = @size.size 
                 %tr
-                  %th
-                    配達料の負担
-                  %td
-                    着払い(購入者負担)
+                  %th 商品の状態
+                  %td 
+                    = @status.name
                 %tr
-                  %th
-                    発送元の地域
-                  %td
-                    %a( href= "#") コスタリカ
+                  %th 配送の方法
+                  %td 
+                    = @delivery.name
                 %tr
-                  %th
-                    発送日の目安
+                  %th 配送料の負担
+                  %td 
+                    = @payer.name
+                %tr
+                  %th 発送元の地域
                   %td
-                    2~3日
+                    = @prefecture.name
+                %tr
+                  %th 発送日の目安
+                  %td 
+                    = @duration.name
           .main__show__contents__range__item__optionalArea
             .main__show__contents__range__item__optionalArea__likeBtn
               .main__show__contents__range__item__optionalArea__likeBtn__Btn
                 = icon('fa', 'star',class: 'icon')
-                %a( href= "#") お気に入り 0
+                = link_to "お気に入り 0"
             .main__show__contents__range__item__optionalArea__optional
               .main__show__contents__range__item__optionalArea__optional__Btn
                 = icon('fa', 'flag',class: 'icon')
-                %a( href= "#") 不適切な商品の通報
+                = link_to "不適切な商品の通報", "#"
         .main__show__contents__range__comment
           .main__show__contents__range__comment__commentBox
             .main__show__contents__range__comment__commentBox__new
-              .main__show__contents__range__comment__commentBox__new__comment
+              .main__show__contents__range__comment__commentBox__new__text
+                %textarea.inputs
               .main__show__contents__range__comment__commentBox__new__noticeMsg
                 相手ことを考え丁寧なコメントを心崖ましょう。
                 %br/
                 不快な言葉遣いなどは利用制限や退会処分となることがあります。
-                %br/
-              .main__show__contents__range__comment__commentBox__new__Btn
-                <i class="fa fa-comment"></i>
-                = link_to "コメントする"
-        .main__show__contents__range__links
-          .main__show__contents__range__links__before
+                %br/            
+              = link_to "#", class: "comment-btn" do
+                .main__show__contents__range__comment__commentBox__new__Btn
+                  = icon('fas', 'comment', class: 'item-detail-message__btn__icon')
+                  %span.comment-btn コメントする
+          .main__show__contents__range__comment__comments
+            %h4 コメント一覧
+            .main__show__contents__range__comment__comments__box
+            = @comments.each do |comment|
+              %p
+                %strong
+                = link_to comment.user.nickname, "/users/#{comment.user_id}"
+                = comment.text
+        .main__show__contents__range__links           
+          = link_to "#", class: "before" do
+            .main__show__contents__range__links__before
             = icon('fa', 'angle-left',class: 'icon')
-            %a( href= "#") 前の商品
-          .main__show__contents__range__links__after
-            %a( href= "#") 次の商品
-            .main__show__contents__range__links__after__arrow
+            %span.Before 前の商品
+          = link_to "#", class: "after" do
+            .main__show__contents__range__links__after
+            %span.after 次の商品
             = icon('fa', 'angle-right',class: 'icon')
-
         .main__show__contents__range__relatedItems
-          %a( href= "#") メンズをもっと見る
+          = link_to "メンズをもっと見る", "#"
           .main__show__contents__range__relatedItems__produtLists
-
-
