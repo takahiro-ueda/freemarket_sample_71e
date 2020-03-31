@@ -11,14 +11,11 @@ class ItemsController < ApplicationController
     # @category = Category.all
     @item = Item.new
     @item.item_images.new
-    @brand = Brand.new
   end
 
   def create
-    @brand = Brand.new(brand_params)
-    @brand.save!
     @item = Item.new(item_params)
-    if @item.save
+    if @item.save!
       redirect_to root_path
     else
       render :new
@@ -59,13 +56,9 @@ class ItemsController < ApplicationController
       :prefecture_id,
       :size_id,
       :status_id,
-      :brand_id,
+      :brand,
       item_images_attributes: [:image, :_destroy, :id]
       ).merge(seller_id: 1)
-  end
-
-  def brand_params
-    params.require(:brand).permit(:name)
   end
 
   def set_item
