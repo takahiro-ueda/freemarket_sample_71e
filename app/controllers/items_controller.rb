@@ -6,9 +6,6 @@ class ItemsController < ApplicationController
   end
 
   def new
-    # @brand = Brand.all
-    # @size = Size.all
-    # @category = Category.all
     @item = Item.new
     @item.item_images.new
   end
