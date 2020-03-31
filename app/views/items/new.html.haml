@@ -109,7 +109,7 @@
         .item-content__reactid
           = f.submit "出品する", class: "sellbtn"
           %br
-          %a.cta-btn{:href => "#"} もどる
+          =link_to "戻る", root_path, class: "cta-btn"
 .footer
   .footer__conditions
     %h5 プライバシーポリシー
