@@ -11,18 +11,23 @@
         .item-content__fild__dt
           .item-content__fild__dt__label 出品画像
           .item-content__fild__dt__required 必須
-        .image-from
+        #image-form
+          #previews
+            - if @item.persisted?
+              - @item.item_images.each_with_index do |image, i|
+                = image_tag image.image.url, data: { index: i }
           = f.fields_for :item_images do |i|
-            = i.file_field :image
-      -# .item-content__files
-      -#   .item-content__files__image-col
-      -#     = image_tag src="/assets/icon_camera.png", size: "100x100"
-      -#   .item-content__files__image-col
-      -#     = image_tag src="/assets/icon_camera.png", size: "100x100"
-      -#   .item-content__files__image-col
-      -#     = image_tag src="/assets/icon_camera.png", size: "100x100"
-      -#   .item-content__files__image-col
-      -#     = image_tag src="/assets/icon_camera.png", size: "100x100"
+            .js-box{data: { index: i.index }}
+              = i.file_field :image, class: "js-file"
+              %br/
+              %span.js-remove 削除
+            - if @item.persisted?
+              = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
+            - if @item.persisted?
+              .js-box{ data:{ index: @item.i.count } }
+              = faile_field_tag :image, name: "item[item_images_attributes][#{@item.i.count}][image]"
+              %br/
+              %span.js-remove 削除
     -# 商品名/商品説明
     .item-content
       .item-content__fild

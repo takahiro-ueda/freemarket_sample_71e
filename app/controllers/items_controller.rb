@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :set_item, except: [:index, :new, :create]
+
   def index
     # @parents = Category.all.order("id ASC").limit(13)
   end
@@ -13,8 +15,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    # binding.pry
-    if @item.save!
+    if @item.save
       redirect_to root_path
     else
       render :new
@@ -25,12 +26,20 @@ class ItemsController < ApplicationController
   end
 
   def update
+    @item.update(item_params)
+    if @item.save
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   def show
   end
 
   def destroy
+    @item.destroy
+    redirect_to root_path
   end
 
   private
@@ -48,11 +57,12 @@ class ItemsController < ApplicationController
       :size_id,
       :status,
       :brand_id,
-      item_images_attributes: [:image]
+      item_images_attributes: [:image, :_destroy, :id]
       ).merge(seller_id: 1)
   end
 
   def set_item
+    @item = Item.find(params[:id])
   end
   
 end
