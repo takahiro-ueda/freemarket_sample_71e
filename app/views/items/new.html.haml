@@ -1,120 +1,120 @@
-.header
-  .header__logo
-    = link_to "#", class: "logo_btn" do
-      = image_tag src="/assets/logo.png", size: "185x50"
-.container
 = form_for @item do |f|
-  .main
-    商品画像
-    .item-content
-      .item-content__fild
+  .header
+    .header__logo
+      = link_to root_path, class: "logo_btn" do
+        = image_tag src="/assets/logo.png", size: "185x50"
+  .container
+    .main
+      .item-content
+        .item-content__fild
+          .item-content__fild__dt
+            .item-content__fild__dt__label 出品画像
+            .item-content__fild__dt__required 必須
+          #image-form
+            #previews
+              - if @item.persisted?
+                - @item.item_images.each_with_index do |image, i|
+                  = image_tag image.image.url, data: { index: i }
+            = f.fields_for :item_images do |i|
+              .js-box{data: { index: i.index }}
+                = i.file_field :image, class: "js-file"
+                %br/
+                %span.js-remove 削除
+              - if @item.persisted?
+                = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
+              - if @item.persisted?
+                .js-box{ data:{ index: @item.i.count } }
+                = faile_field_tag :image, name: "item[item_images_attributes][#{@item.i.count}][image]"
+                %br/
+                %span.js-remove 削除
+      -# 商品名/商品説明
+      .item-content
+        .item-content__fild
+          .item-content__fild__dt
+            .item-content__fild__dt__label 商品名
+            .item-content__fild__dt__required 必須
+          .item-content__text-fild
+            = f.text_field :name, class: "text", placeholder: "40文字まで"
+      .item-content
         .item-content__fild__dt
-          .item-content__fild__dt__label 出品画像
+          .item-content__fild__dt__label 商品説明
           .item-content__fild__dt__required 必須
-        #image-form
-          #previews
-            - if @item.persisted?
-              - @item.item_images.each_with_index do |image, i|
-                = image_tag image.image.url, data: { index: i }
-          = f.fields_for :item_images do |i|
-            .js-box{data: { index: i.index }}
-              = i.file_field :image, class: "js-file"
-              %br/
-              %span.js-remove 削除
-            - if @item.persisted?
-              = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
-            - if @item.persisted?
-              .js-box{ data:{ index: @item.i.count } }
-              = faile_field_tag :image, name: "item[item_images_attributes][#{@item.i.count}][image]"
-              %br/
-              %span.js-remove 削除
-    -# 商品名/商品説明
-    .item-content
-      .item-content__fild
-        .item-content__fild__dt
-          .item-content__fild__dt__label 商品名
-          .item-content__fild__dt__required 必須
-        .item-content__text-fild
-          = f.text_field :name, class: "text", placeholder: "40文字まで"
-    .item-content
-      .item-content__fild__dt
-        .item-content__fild__dt__label 商品説明
-        .item-content__fild__dt__required 必須
-      .item-content__text-area
-        = f.text_area :introduction, rows: "4", placeholder: "商品の説明"
-    -# 商品詳細/カテゴリー/サイズ/ブランド/商品の状態
-    .item-content
-      .item-content__fild
-        %p.note 商品の詳細
-        .item-content__fild__dt
-          .item-content__fild__dt__label カテゴリー
-          .item-content__fild__dt__required 必須
-        .item-content__text-select
-          = f.collection_select :category_id, Category.all, :id, :name
+        .item-content__text-area
+          = f.text_area :introduction, rows: "4", placeholder: "商品の説明"
+      -# 商品詳細/カテゴリー/サイズ/ブランド/商品の状態
+      .item-content
+        .item-content__fild
+          %p.note 商品の詳細
+          .item-content__fild__dt
+            .item-content__fild__dt__label カテゴリー
+            .item-content__fild__dt__required 必須
+          .item-content__text-select
+            = f.collection_select :category_id, Category.all, :id, :name
 
-      .item-content__fild
-        .item-content__fild__dt
-          .item-content__fild__dt__label サイズ
-          .item-content__fild__dt__required 必須
-        .item-content__text-select
-          = f.collection_select :size_id, Size.all, :id, :size
-      .item-content__fild
-        .item-content__fild__dt
-          .item-content__fild__dt__label ブランド
-          .item-content__fild__dt__any 任意
-        .item-content__text-fild
-          = f.collection_select :brand_id, Brand.all, :id, :name
-      .item-content__fild
-        .item-content__fild__dt
-          .item-content__fild__dt__label 商品の状態
-          .item-content__fild__dt__required 必須
-        .item-content__text-select
-          = f.select :status, [["上物","新品"],["普通","未使用"],["粗悪","キズあり"]]
-    -# 配送について/配送の負担/発送の方法/発送元の地域/発送までの日数
-    .item-content
-      .item-content__fild
-        %p.note 配送について
-        .item-content__fild__dt
-          .item-content__fild__dt__label 配送の負担
-          .item-content__fild__dt__required 必須
-        .item-content__text-select
-          = f.select :shipping_payer, [["出品者負担","出品者負担"],["購入者負担","購入者負担"]]
-      .item-content__fild
-        .item-content__fild__dt
-          .item-content__fild__dt__label 発送の方法
-          .item-content__fild__dt__required 必須
-        .item-content__text-select
-          = f.select :delivery_method, [["クロネコヤマト","クロネコヤマト"],["ゆうパック","ゆうパック"],["佐川急便","佐川急便"]]
-      .item-content__fild
-        .item-content__fild__dt
-          .item-content__fild__dt__label 発送元の地域
-          .item-content__fild__dt__required 必須
-        .item-content__text-select
-          =f.select :shipping_area, [["北海道","北海道"],["本州","本州"],["九州","九州"],["沖縄","沖縄"]]
-      .item-content__fild
-        .item-content__fild__dt
-          .item-content__fild__dt__label 発送までの日数
-          .item-content__fild__dt__required 必須
-        .item-content__text-select
-          = f.select :shipping_duration, [["1日〜2日","1日〜2日"],["2日〜3日","2日〜3日"],["3日〜6日","3日〜6日"]]
-    -# 価格/出品ボタン/もどるリンク
-    .item-content
-      .item-content__fild
-        %p.note 価格（¥300~9,999,999)
-        .item-content__fild__dt
-          .item-content__fild__dt__label 商品名
-          .item-content__fild__dt__required 必須
-        .item-content__text-fild
-          = f.number_field :price, placeholder: "¥0"
-      .item-content__reactid
-        = f.submit "出品する", class: "sellbtn"
-        %br
-        %a.cta-btn{:href => "#"} もどる
-.footer
-  .footer__conditions
-    %h5 プライバシーポリシー
-    %h5 FURIMA利用規約
-    %h5 特定商取引に関する表記
-  .footer__logo
-    = image_tag src="/assets/logo-white.png", size: "185x50"
-  %p© FURIMA
+        .item-content__fild
+          .item-content__fild__dt
+            .item-content__fild__dt__label サイズ
+            .item-content__fild__dt__required 必須
+          .item-content__text-select
+            = f.collection_select :size_id, Size.all, :id, :size
+        .item-content__fild
+          .item-content__fild__dt
+            .item-content__fild__dt__label ブランド
+            .item-content__fild__dt__any 任意
+          .item-content__text-select
+            = fields_for @brand do |b|
+              = b.text_field :name,  placeholder: "シャネルなど"
+        .item-content__fild
+          .item-content__fild__dt
+            .item-content__fild__dt__label 商品の状態
+            .item-content__fild__dt__required 必須
+          .item-content__text-select
+            = f.select :status, [["上物","新品"],["普通","未使用"],["粗悪","キズあり"]]
+      -# 配送について/配送の負担/発送の方法/発送元の地域/発送までの日数
+      .item-content
+        .item-content__fild
+          %p.note 配送について
+          .item-content__fild__dt
+            .item-content__fild__dt__label 配送の負担
+            .item-content__fild__dt__required 必須
+          .item-content__text-select
+            = f.select :shipping_payer, [["出品者負担","出品者負担"],["購入者負担","購入者負担"]]
+        .item-content__fild
+          .item-content__fild__dt
+            .item-content__fild__dt__label 発送の方法
+            .item-content__fild__dt__required 必須
+          .item-content__text-select
+            = f.select :delivery_method, [["クロネコヤマト","クロネコヤマト"],["ゆうパック","ゆうパック"],["佐川急便","佐川急便"]]
+        .item-content__fild
+          .item-content__fild__dt
+            .item-content__fild__dt__label 発送元の地域
+            .item-content__fild__dt__required 必須
+          .item-content__text-select
+            =f.select :shipping_area, [["北海道","北海道"],["本州","本州"],["九州","九州"],["沖縄","沖縄"]]
+        .item-content__fild
+          .item-content__fild__dt
+            .item-content__fild__dt__label 発送までの日数
+            .item-content__fild__dt__required 必須
+          .item-content__text-select
+            = f.select :shipping_duration, [["1日〜2日","1日〜2日"],["2日〜3日","2日〜3日"],["3日〜6日","3日〜6日"]]
+      -# 価格/出品ボタン/もどるリンク
+      .item-content
+        .item-content__fild
+          %p.note 価格（¥300~9,999,999)
+          .item-content__fild__dt
+            .item-content__fild__dt__label 価格
+            .item-content__fild__dt__required 必須
+          .item-content__text-fild
+            = f.number_field :price, placeholder: "¥0"
+        .item-content__reactid
+          = f.submit "出品する", class: "sellbtn"
+          %br
+          = link_to "戻る", root_path, class: "cta-btn"
+    .footer
+      .footer__conditions
+        %h5 プライバシーポリシー
+        %h5 FURIMA利用規約
+        %h5 特定商取引に関する表記
+      .footer__logo
+        = image_tag src="/assets/logo-white.png", size: "185x50"
+      %p© FURIMA
