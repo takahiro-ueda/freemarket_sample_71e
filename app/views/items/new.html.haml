@@ -1,108 +1,115 @@
-.header
-  .header__logo
-    = link_to "#", class: "logo_btn" do
-      = image_tag src="/assets/logo.png", size: "185x50"
-.container
-  .main
-    -# 商品画像
-    .item-content
-      .item-content__fild
+= form_for @item do |f|
+  .header
+    .header__logo
+      = link_to root_path, class: "logo_btn" do
+        = image_tag src="/assets/logo.png", size: "185x50"
+  .container
+    .main
+      .item-content
+        .item-content__fild
+          .item-content__fild__dt
+            .item-content__fild__dt__label 出品画像
+            .item-content__fild__dt__required 必須
+          #image-form
+            #previews
+              - if @item.persisted?
+                - @item.item_images.each_with_index do |image, i|
+                  = image_tag image.image.url, data: { index: i }
+            = f.fields_for :item_images do |i|
+              .js-box{data: { index: i.index }}
+                = i.file_field :image, class: "js-file"
+                %br/
+                %span.js-remove 削除
+              - if @item.persisted?
+                = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
+              - if @item.persisted?
+                .js-box{ data:{ index: @item.i.count } }
+                = faile_field_tag :image, name: "item[item_images_attributes][#{@item.i.count}][image]"
+                %br/
+                %span.js-remove 削除
+      -# 商品名/商品説明
+      .item-content
+        .item-content__fild
+          .item-content__fild__dt
+            .item-content__fild__dt__label 商品名
+            .item-content__fild__dt__required 必須
+          .item-content__text-fild
+            = f.text_field :name, class: "text", placeholder: "40文字まで"
+      .item-content
         .item-content__fild__dt
-          .item-content__fild__dt__label 出品画像
+          .item-content__fild__dt__label 商品説明
           .item-content__fild__dt__required 必須
-      .item-content__files
-        .item-content__files__image-col
-          = image_tag src="/assets/icon_camera.png", size: "100x100"
-        .item-content__files__image-col
-          = image_tag src="/assets/icon_camera.png", size: "100x100"
-        .item-content__files__image-col
-          = image_tag src="/assets/icon_camera.png", size: "100x100"
-        .item-content__files__image-col
-          = image_tag src="/assets/icon_camera.png", size: "100x100"
-    -# 商品名/商品説明
-    .item-content
-      .item-content__fild
-        .item-content__fild__dt
-          .item-content__fild__dt__label 商品名
-          .item-content__fild__dt__required 必須
-        .item-content__text-fild
-          %input.text{:name => "name", :placeholder => "40文字まで", :type => "neme", :value => ""}
-    .item-content
-      .item-content__fild__dt
-        .item-content__fild__dt__label 商品説明
-        .item-content__fild__dt__required 必須
-      .item-content__text-area
-        %textarea{:cols => "40", :placeholder => "商品の説明", :name => "", :rows => "4"}
-    -# 商品詳細/カテゴリー/サイズ/ブランド/商品の状態
-    .item-content
-      .item-content__fild
-        %p.note 商品の詳細
-        .item-content__fild__dt
-          .item-content__fild__dt__label カテゴリー
-          .item-content__fild__dt__required 必須
+        .item-content__text-area
+          = f.text_area :introduction, rows: "4", placeholder: "商品の説明"
+      -# 商品詳細/カテゴリー/サイズ/ブランド/商品の状態
+      .item-content
+        .item-content__fild
+          %p.note 商品の詳細
+          .item-content__fild__dt
+            .item-content__fild__dt__label カテゴリー
+            .item-content__fild__dt__required 必須
+          .item-content__text-select
+            = f.collection_select :category_id, Category.all, :id, :name
+
+        .item-content__fild
+          .item-content__fild__dt
+            .item-content__fild__dt__label サイズ
+            .item-content__fild__dt__required 必須
         .item-content__text-select
-          %select{:name => "カテゴリー", :size => ""}
-          %select{:name => "カテゴリー", :size => ""}
-          %select{:name => "カテゴリー", :size => ""}
-      .item-content__fild
-        .item-content__fild__dt
-          .item-content__fild__dt__label サイズ
-          .item-content__fild__dt__required 必須
-        .item-content__text-select
-          %select{:name => "カテゴリー", :size => ""}
-      .item-content__fild
-        .item-content__fild__dt
-          .item-content__fild__dt__label ブランド
-          .item-content__fild__dt__any 任意
-        .item-content__text-fild
-          %input.text{:name => "name", :placeholder => "例）シャネル", :type => "", :value => ""}
-      .item-content__fild
-        .item-content__fild__dt
-          .item-content__fild__dt__label 商品の状態
-          .item-content__fild__dt__required 必須
-        .item-content__text-select
-          %select{:name => "カテゴリー", :size => ""}
-    -# 配送について/配送の負担/発送の方法/発送元の地域/発送までの日数
-    .item-content
-      .item-content__fild
-        %p.note 配送について
-        .item-content__fild__dt
-          .item-content__fild__dt__label 配送の負担
-          .item-content__fild__dt__required 必須
-        .item-content__text-select
-          %select{:name => "カテゴリー", :size => ""}
-      .item-content__fild
-        .item-content__fild__dt
-          .item-content__fild__dt__label 発送の方法
-          .item-content__fild__dt__required 必須
-        .item-content__text-select
-          %select{:name => "カテゴリー", :size => ""}
-      .item-content__fild
-        .item-content__fild__dt
-          .item-content__fild__dt__label 発送元の地域
-          .item-content__fild__dt__required 必須
-        .item-content__text-select
-          %select{:name => "カテゴリー", :size => ""}
-      .item-content__fild
-        .item-content__fild__dt
-          .item-content__fild__dt__label 発送までの日数
-          .item-content__fild__dt__required 必須
-        .item-content__text-select
-          %select{:name => "カテゴリー", :size => ""}
-    -# 価格/出品ボタン/もどるリンク
-    .item-content
-      .item-content__fild
-        %p.note 価格（¥300~9,999,999)
-        .item-content__fild__dt
-          .item-content__fild__dt__label 商品名
-          .item-content__fild__dt__required 必須
-        .item-content__text-fild
-          %input.text{:name => "name", :placeholder => "¥0", :type => "money", :value => ""}
-      .item-content__reactid
-        %button.sellbtn{:name => "button", :type => "submit"}
-          出品する
-        %br
-        %a.cta-btn{:href => "#"} もどる
+          = f.collection_select :size_id, Size.all, :id, :size
+          .item-content__fild
+            .item-content__fild__dt
+              .item-content__fild__dt__label ブランド
+              .item-content__fild__dt__any 任意
+            .item-content__text-fild
+              = f.text_field :brand, placeholder: "シャネルなど"
+          .item-content__fild
+            .item-content__fild__dt
+              .item-content__fild__dt__label 商品の状態
+              .item-content__fild__dt__required 必須
+            .item-content__text-select
+              = f.collection_select :status_id, Status.all, :id, :name, prompt: ""
+        -# 配送について/配送の負担/発送の方法/発送元の地域/発送までの日数
+      .item-content
+        .item-content__fild
+          %p.note 配送について
+          .item-content__fild__dt
+            .item-content__fild__dt__label 配送の負担
+            .item-content__fild__dt__required 必須
+          .item-content__text-select
+            = f.collection_select :payer_id, Payer.all, :id, :name, prompt: ""
+        .item-content__fild
+          .item-content__fild__dt
+            .item-content__fild__dt__label 発送の方法
+            .item-content__fild__dt__required 必須
+          .item-content__text-select
+            = f.collection_select :delivery_id, Delivery.all, :id, :name, prompt: ""
+        .item-content__fild
+          .item-content__fild__dt
+            .item-content__fild__dt__label 発送元の地域
+            .item-content__fild__dt__required 必須
+          .item-content__text-select
+            = f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: ""
+        .item-content__fild
+          .item-content__fild__dt
+            .item-content__fild__dt__label 発送までの日数
+            .item-content__fild__dt__required 必須
+          .item-content__text-select
+            = f.collection_select :duration_id, Duration.all, :id, :name, prompt: ""
+      -# 価格/出品ボタン/もどるリンク
+      .item-content
+        .item-content__fild
+          %p.note 価格（¥300~9,999,999)
+          .item-content__fild__dt
+            .item-content__fild__dt__label 価格
+            .item-content__fild__dt__required 必須
+          .item-content__text-fild
+            = f.number_field :price, placeholder: "¥0"
+            = f.hidden_field :trade_id, value: "1"
+        .item-content__reactid
+          = f.submit "出品する", class: "sellbtn"
+          %br
+          =link_to "戻る", root_path, class: "cta-btn"
 .footer
   .footer__conditions
     %h5 プライバシーポリシー

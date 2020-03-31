@@ -29,12 +29,6 @@ ActiveRecord::Schema.define(version: 2020_03_26_105420) do
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
-  create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -62,14 +56,6 @@ ActiveRecord::Schema.define(version: 2020_03_26_105420) do
     t.index ["user_id"], name: "index_credits_on_user_id"
   end
 
-  create_table "deliveries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "method", null: false
-    t.string "burden", null: false
-    t.date "date", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "image", null: false
     t.datetime "created_at", null: false
@@ -79,24 +65,26 @@ ActiveRecord::Schema.define(version: 2020_03_26_105420) do
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "size_id", null: false
-    t.bigint "category_id", null: false
     t.bigint "delivery_id", null: false
     t.bigint "brand_id"
     t.string "name", null: false
     t.string "introduction", null: false
+    t.string "brand"
     t.integer "price", null: false
-    t.string "status", null: false
+    t.integer "status_id", null: false
     t.string "value"
+    t.integer "trade_id", null: false
+    t.integer "payer_id", null: false
+    t.integer "delivery_id", null: false
+    t.integer "duration_id", null: false
+    t.integer "prefecture_id", null: false
     t.date "deal_closed_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "seller_id", null: false
     t.bigint "buyer_id"
-    t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["buyer_id"], name: "index_items_on_buyer_id"
     t.index ["category_id"], name: "index_items_on_category_id"
-    t.index ["delivery_id"], name: "index_items_on_delivery_id"
     t.index ["seller_id"], name: "index_items_on_seller_id"
     t.index ["size_id"], name: "index_items_on_size_id"
   end
@@ -129,9 +117,7 @@ ActiveRecord::Schema.define(version: 2020_03_26_105420) do
   add_foreign_key "comments", "users"
   add_foreign_key "credits", "users"
   add_foreign_key "item_images", "items"
-  add_foreign_key "items", "brands"
   add_foreign_key "items", "categories"
-  add_foreign_key "items", "deliveries"
   add_foreign_key "items", "sizes"
   add_foreign_key "items", "users", column: "buyer_id"
   add_foreign_key "items", "users", column: "seller_id"

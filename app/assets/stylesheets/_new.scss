@@ -24,8 +24,10 @@ body {
 }
 
 .container {
+  width: 100%;
+  padding-bottom: 370px;
   .main {
-    padding: 20px;
+    margin: 0 auto;
     .item-content {
       width: 900px;
       margin: 0 auto;
@@ -121,14 +123,17 @@ body {
           font-weight: 600;
           border: none;
         }
-        a {
-          text-decoration: none;
-          margin-top: 20px;
-          color:#0095ee;
-          font-size: 14px;
+        :hover {
+          opacity: .8;
         }
       }
     }
+  }
+  .cta-btn {
+    text-decoration: none;
+    margin-top: 20px;
+    color:#0095ee;
+    font-size: 14px;
   }
 }
 .footer {
