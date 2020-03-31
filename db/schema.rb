@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2020_03_26_105420) do
   end
 
   create_table "credits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "number", null: false
+    t.string "number", null: false
     t.bigint "user_id", null: false
     t.string "customer_id", null: false
     t.datetime "created_at", null: false
