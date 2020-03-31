@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :delivery
   belongs_to_active_hash :duration
   belongs_to_active_hash :status
+  belongs_to_active_hash :trade
   belongs_to :user, optional: true
   belongs_to :size, optional: true
   belongs_to :category

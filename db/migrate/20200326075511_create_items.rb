@@ -9,6 +9,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.integer :price, null: false
       t.integer :status_id, null: false
       t.string :value, null: true
+      t.integer :trade_id, null: false
       t.integer :payer_id, null: false
       t.integer :delivery_id, null: false
       t.integer :duration_id, null: false

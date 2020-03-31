@@ -54,6 +54,7 @@ class ItemsController < ApplicationController
       :payer_id,
       :duration_id,
       :prefecture_id,
+      :trade_id,
       :size_id,
       :status_id,
       :brand,

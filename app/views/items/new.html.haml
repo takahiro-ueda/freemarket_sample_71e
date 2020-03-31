@@ -105,6 +105,7 @@
             .item-content__fild__dt__required 必須
           .item-content__text-fild
             = f.number_field :price, placeholder: "¥0"
+            = f.hidden_field :trade_id, value: "1"
         .item-content__reactid
           = f.submit "出品する", class: "sellbtn"
           %br
