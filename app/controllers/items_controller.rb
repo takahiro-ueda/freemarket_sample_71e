@@ -53,12 +53,12 @@ class ItemsController < ApplicationController
       :price, 
       :introduction, 
       :category_id,
-      :delivery_method,
-      :shipping_payer,
-      :shipping_duration,
-      :shipping_area,
+      :delivery_id,
+      :payer_id,
+      :duration_id,
+      :prefecture_id,
       :size_id,
-      :status,
+      :status_id,
       :brand_id,
       item_images_attributes: [:image, :_destroy, :id]
       ).merge(seller_id: 1)
