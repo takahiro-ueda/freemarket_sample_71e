@@ -47,10 +47,73 @@
         .item-content__text-select
           = f.collection_select :category_id, Category.all, :id, :name
 
-      .item-content__fild
-        .item-content__fild__dt
-          .item-content__fild__dt__label サイズ
-          .item-content__fild__dt__required 必須
+        .item-content__fild
+          .item-content__fild__dt
+            .item-content__fild__dt__label サイズ
+            .item-content__fild__dt__required 必須
+          .item-content__text-select
+            = f.collection_select :size_id, Size.all, :id, :size
+        .item-content__fild
+          .item-content__fild__dt
+            .item-content__fild__dt__label ブランド
+            .item-content__fild__dt__any 任意
+          .item-content__text-select
+            = fields_for @brand do |b|
+              = b.text_field :name,  placeholder: "シャネルなど"
+        .item-content__fild
+          .item-content__fild__dt
+            .item-content__fild__dt__label 商品の状態
+            .item-content__fild__dt__required 必須
+          .item-content__text-select
+            = f.select :status, [["上物","新品"],["普通","未使用"],["粗悪","キズあり"]]
+      -# 配送について/配送の負担/発送の方法/発送元の地域/発送までの日数
+      .item-content
+        .item-content__fild
+          %p.note 配送について
+          .item-content__fild__dt
+            .item-content__fild__dt__label 配送の負担
+            .item-content__fild__dt__required 必須
+          .item-content__text-select
+            = f.select :shipping_payer, [["出品者負担","出品者負担"],["購入者負担","購入者負担"]]
+        .item-content__fild
+          .item-content__fild__dt
+            .item-content__fild__dt__label 発送の方法
+            .item-content__fild__dt__required 必須
+          .item-content__text-select
+            = f.select :delivery_method, [["クロネコヤマト","クロネコヤマト"],["ゆうパック","ゆうパック"],["佐川急便","佐川急便"]]
+        .item-content__fild
+          .item-content__fild__dt
+            .item-content__fild__dt__label 発送元の地域
+            .item-content__fild__dt__required 必須
+          .item-content__text-select
+            =f.select :shipping_area, [["北海道","北海道"],["本州","本州"],["九州","九州"],["沖縄","沖縄"]]
+        .item-content__fild
+          .item-content__fild__dt
+            .item-content__fild__dt__label 発送までの日数
+            .item-content__fild__dt__required 必須
+          .item-content__text-select
+            = f.select :shipping_duration, [["1日〜2日","1日〜2日"],["2日〜3日","2日〜3日"],["3日〜6日","3日〜6日"]]
+      -# 価格/出品ボタン/もどるリンク
+      .item-content
+        .item-content__fild
+          %p.note 価格（¥300~9,999,999)
+          .item-content__fild__dt
+            .item-content__fild__dt__label 価格
+            .item-content__fild__dt__required 必須
+          .item-content__text-fild
+            = f.number_field :price, placeholder: "¥0"
+        .item-content__reactid
+          = f.submit "出品する", class: "sellbtn"
+          %br
+          = link_to "戻る", root_path, class: "cta-btn"
+    .footer
+      .footer__conditions
+        %h5 プライバシーポリシー
+        %h5 FURIMA利用規約
+        %h5 特定商取引に関する表記
+      .footer__logo
+        = image_tag src="/assets/logo-white.png", size: "185x50"
+      %p© FURIMA
         .item-content__text-select
           = f.collection_select :size_id, Size.all, :id, :size
       .item-content__fild
@@ -113,3 +176,4 @@
   .footer__logo
     = image_tag src="/assets/logo-white.png", size: "185x50"
   %p© FURIMA
+  
