@@ -16,8 +16,11 @@ class ItemsController < ApplicationController
       flash.now[:alert] = @item.errors.full_messages
       render :new and return
     end
-     @item.save
+    if @item.save
       redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def edit
