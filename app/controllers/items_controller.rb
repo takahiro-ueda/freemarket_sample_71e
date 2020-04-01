@@ -50,7 +50,6 @@ class ItemsController < ApplicationController
       flash.now[:alert] = '削除に失敗しました。'
       render :edit
     end
-    @item.destroy
   end
 
   private
