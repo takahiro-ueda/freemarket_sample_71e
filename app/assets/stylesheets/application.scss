@@ -10,8 +10,8 @@
 @import "show";
 @import "mypage";
 @import "error";
-@import "credit";
-@import "credit_show";
+
+
 .pcHeader{
   padding: 0 60px;
 
@@ -174,3 +174,5 @@
     margin: 0 auto;
   }
 }
+@import "credit";
+@import "credit_show";
