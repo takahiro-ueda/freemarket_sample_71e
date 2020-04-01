@@ -79,8 +79,16 @@
         = image_tag 'logo-white.png', height: '100%', width: '100%', alt: 'logo'
     %p
       © FURIMA
-  %a(href="#")
+- if user_signed_in?
+  = link_to new_item_path, class: "purchaseBtn" do
     .purchaseBtn
       %span 出品する
+      .purchaseBtn__icon
+        = image_tag 'icon_camera.png', height: '100%', width: '100%', alt: 'logo'
+- else
+  = link_to new_user_session_path,class: "purchaseBtn" do
+    .purchaseBtn
+      %span 出品する
+      %span.note ※ログインが必要です
       .purchaseBtn__icon
         = image_tag 'icon_camera.png', height: '100%', width: '100%', alt: 'logo'
