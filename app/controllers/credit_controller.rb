@@ -16,8 +16,8 @@ class CreditController < ApplicationController
     else
       # トークンが正常に発行されていたら、顧客情報をPAY.JPに登録します。
       customer = Payjp::Customer.create(
-      description: '登録テスト', #なくてもOK
-      email: current_user.email, #なくてもOK
+      description: '登録テスト', 
+      email: current_user.email, 
       card: params['payjp_token'],
       metadata: {user_id: current_user.id}
       ) # 直前のnewアクションで発行され、送られてくるトークンをここで顧客に紐付けて永久保存します。
