@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, except: [:index, :new, :create]
-
+  before_action :set_item, only: [:show, :destroy]
   def index
     @items = Item.includes(:item_images).order(created_at: "DESC").limit(3)
   end
@@ -31,6 +31,16 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @user = User.find(@item.seller_id)
+    @category = @item.category
+    @size = @item.size
+    @status = @item.status
+    @delivery = @item.delivery
+    @payer = @item.payer
+    @prefecture = @item.prefecture
+    @duration = @item.duration
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user)
   end
 
   def destroy
@@ -64,6 +74,10 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def set_items_image
+    @items = Item.includes(:images).order(:item_purchaser_id, "id DESC")
   end
   
 end
