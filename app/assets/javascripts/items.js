@@ -35,7 +35,6 @@ $(document).on('turbolinks:load', ()=> {
 
   $('#image-form').on('click', '.js-remove', function() {
     $(this).parent().remove();
-    // if ($('.js-file').length == 0) $('#image-form').append(buildFileField(fileIndex[0]));
 
     const targetIndex = $(this).parent().data('index')
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
