@@ -1,8 +1,8 @@
-%main
-  %div.list-container
-    %div.list-container__list-side 
-      %nav.list-container__mypage-nav
-        %ul.nav-list
+.mypage
+  .mypage__content
+    .mypage__content__side 
+      %nav.mypage__content__side__nav
+        %ul.mypage__content__side__nav__list
           %li
             = link_to "#", class: "list-item" do
               マイページ
@@ -23,9 +23,9 @@
             = link_to "#", class: "list-item" do
               評価一覧
               = icon('fas', 'angle-right')
-      %h3.nav-head
-        %span 設定
-        %ul.nav-list
+      %h3.mypage__content__side__nav__setting
+        設定
+        %ul.mypage__content__side__nav__list
           %li
             = link_to "#", class: "list-item" do
               プロフィール
@@ -42,46 +42,35 @@
             = link_to "/users/sign_out", method: :delete, class: "list-item" do
               ログアウト
               = icon('fas', 'angle-right')
-    %div.list-container__list-content
-      %section.mypage-user
+    .mypage__content__main
+      .mypage__content__main__user
         =link_to '#' do
-          %figure.mypage-user__img
-            =image_tag("https://static.mercdn.net/images/member_photo_noimage_thumb.png")
-          %h2 USER NAME
-          %div.user-status
-            %div.user-status__review
+          %figure.mypage__content__main__user__img
+            =image_tag("https://static.mercdn.net/images/member_photo_noimage_thumb.png", class: "mypage__content__main__user__img__icon")
+          %h2.mypage__content__main__user__img__name USER NAME
+          .mypage__content__main__user__status
+            .mypage__content__main__user__status__review
               評価
               %span 00
-            %div.user-status__sell
+            .mypage__content__main__user__status__sell
               出品数
               %span 00
-      %section.mypage-tab-container
-        %h2.mypage-tab-container__head 購入した商品
-        %ul.mypage-tab-container__mypage-tabs
-          %li.mypage-tab-container__tab
-            = link_to "#"
-            取引中
-          %li.mypage-tab-container__tab
-            = link_to "#"
-            過去の取引
-        %div.mypage-tab-container__tab-content
+      .mypage__content__main__container
+        %h2.mypage__content__main__container__header 購入した商品
+        %ul.mypage__content__main__container__tab
+          %li.mypage__content__main__container__tab__1
+            = link_to '取引中', "#"
+            
+          %li.mypage__content__main__container__tab__2
+            = link_to '過去の取引', "#"
+        .mypage__content__main__container__content
           = render 'item-list'
 %aside.banner
-  %div.inner-box
-    %h2.inner-box__title だれでもかんたん、人生を変えるフリマアプリ
-    %p.inner-box__text 今すぐ無料ダウンロード！
-    %div.inner-box__icon
+  .mypage__inner-box
+    %h2.mypage__inner-box__title だれでもかんたん、人生を変えるフリマアプリ
+    %p.mypage__inner-box__text 今すぐ無料ダウンロード！
+    %div.mypage__inner-box__icon
       = link_to '#' do
         =image_tag("http://furima.tokyo/assets/app-store-9c5e28e8f81bd9912e0ded2f78821e04778a1356c05dc7c7bf1e88614be37c34.svg", class: "inner-box__icon__btn-a")
       =link_to '#' do
         =image_tag("http://furima.tokyo/assets/google-play-469c63f1269e456307c4dde176b33cc3bbbbf142ac4d7369656010130149db1a.svg", class: "inner-box__icon__btn-b")
-=link_to '#' do
-  %div.sell-btn
-    %p.sell-btn__text 出品する
-    =image_tag("http://furima.tokyo/assets/icon_camera-968c5ebaa05319bf1e2ad7508f852dd712504a4d26a1930d8bd87ec03ebcc37a.svg", class: "sell-btn__icon")
-
-
-:javascript
-
-  
-%script(src="")
