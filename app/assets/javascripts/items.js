@@ -13,7 +13,7 @@ $(document).on('turbolinks:load', ()=> {
     return html;
   }
 
-  let fileIndex = [1,2,3,4,5,6,7,8,9,10];
+  let fileIndex = [1,2,3,];
   
   lastIndex = $('.js-box:last').data('index');
   fileIndex.splice(0, lastIndex);
@@ -27,7 +27,7 @@ $(document).on('turbolinks:load', ()=> {
       img.setAttribute('image', blobUrl);
     } else {  
       $('#previews').append(buildImg(targetIndex, blobUrl));
-      $('#image-form').append(buildFileField(fileIndex[0]));
+      if ($('.js-file').length < 4) $('#image-form').append(buildFileField(fileIndex[0]));
       fileIndex.shift();
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
     }
@@ -35,12 +35,13 @@ $(document).on('turbolinks:load', ()=> {
 
   $('#image-form').on('click', '.js-remove', function() {
     $(this).parent().remove();
-    if ($('.js-file').length == 0) $('#image-form').append(buildFileField(fileIndex[0]));
+    // if ($('.js-file').length == 0) $('#image-form').append(buildFileField(fileIndex[0]));
 
     const targetIndex = $(this).parent().data('index')
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
     if (hiddenCheck) hiddenCheck.prop('checked', true);
 
     $(`img[data-index="${targetIndex}"]`).remove();
+    $('#image-form').append(buildFileField(fileIndex[targetIndex]));
   });
 });
