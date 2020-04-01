@@ -13,7 +13,7 @@ $(document).on('turbolinks:load', ()=> {
     return html;
   }
 
-  let fileIndex = [1,2,3,];
+  let fileIndex = [1,2,3,4,5,6,7,8,9,10];
   
   lastIndex = $('.js-box:last').data('index');
   fileIndex.splice(0, lastIndex);
