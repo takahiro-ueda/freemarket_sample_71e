@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, except: [:index, :new, :create]
-
+  before_action :set_item, only: [:show, :destroy]
   def index
     @items = Item.includes(:item_images).order(created_at: "DESC").limit(3)
   end
@@ -31,7 +31,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
     @user = User.find(@item.seller_id)
     @category = @item.category
     @size = @item.size
@@ -45,8 +44,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
-    item.destroy
+    @item.destroy
   end
 
   private
