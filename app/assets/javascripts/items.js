@@ -27,8 +27,7 @@ $(document).on('turbolinks:load', ()=> {
       img.setAttribute('image', blobUrl);
     } else {  
       $('#previews').append(buildImg(targetIndex, blobUrl));
-      // if ($('.js-file').length < 4) $('#image-form').append(buildFileField(fileIndex[0]));
-      $('#image-form').append(buildFileField(fileIndex[0]));
+      if ($('.js-file').length < 4) $('#image-form').append(buildFileField(fileIndex[0]));
       fileIndex.shift();
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
     }
