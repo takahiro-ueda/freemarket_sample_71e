@@ -43,19 +43,16 @@
               ログアウト
               = icon('fas', 'angle-right')
     .mypage__content__main
-      -# .mypage-container.clearfix
       .mypage__credit
         .mypage__credit__main
           %h2.mypage__credit__main__payment
             支払い方法
-          -# .mypage__notification.mypage__notification--success
           .mypage__credit__main__list
           .mypage__credit__main__information
             %h3.mypage__credit__main__information__header
               クレジットカード一覧
             %ul.mypage__credit__main__information__box
               %li
-                -# .signup-main__content.signup-main__content--form{ action: '#', method: 'GET' }
                 .mypage__credit__main__information__box__left{ action: '#', method: 'GET' }
                   .mypage__credit__main__information__box__left__icon
                     = image_tag 'jcb-logomark-img-02.gif', width: '40', height: '30', alt: 'jcb'
