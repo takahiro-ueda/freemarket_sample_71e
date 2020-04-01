@@ -13,4 +13,15 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :item_images, allow_destroy: true
   has_many :comments, dependent: :destroy
   validates :category_id, :name, :introduction, :price, :seller_id, presence: true
+
+  validates :name,
+    length: { maximum:40, message: "入力は４０文字までです。"}
+  validates :introduction,
+    length: { maximum:600, message: "入力は６００文字までです。"}
+  validates :brand,
+    length: { maximum:40, message: "入力は４０文字までです"}
+  validates :price,
+  inclusion: { in: (300..9999999) , message: "入力は数字のみ300〜9999999までです。"}
+
+
 end

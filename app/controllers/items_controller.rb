@@ -12,6 +12,10 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    unless @item.valid?
+      flash.now[:alert] = @item.errors.full_messages
+      render :new and return
+    end
     if @item.save
       redirect_to root_path
     else
@@ -69,7 +73,7 @@ class ItemsController < ApplicationController
       :status_id,
       :brand,
       item_images_attributes: [:image, :_destroy, :id]
-      ).merge(seller_id: 1)
+      ).merge(seller_id: current_user.id)
   end
 
   def set_item

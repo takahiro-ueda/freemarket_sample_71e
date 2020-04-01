@@ -27,6 +27,7 @@ $(document).on('turbolinks:load', ()=> {
       img.setAttribute('image', blobUrl);
     } else {  
       $('#previews').append(buildImg(targetIndex, blobUrl));
+      // if ($('.js-file').length < 4) $('#image-form').append(buildFileField(fileIndex[0]));
       $('#image-form').append(buildFileField(fileIndex[0]));
       fileIndex.shift();
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
@@ -35,12 +36,12 @@ $(document).on('turbolinks:load', ()=> {
 
   $('#image-form').on('click', '.js-remove', function() {
     $(this).parent().remove();
-    if ($('.js-file').length == 0) $('#image-form').append(buildFileField(fileIndex[0]));
 
     const targetIndex = $(this).parent().data('index')
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
     if (hiddenCheck) hiddenCheck.prop('checked', true);
 
     $(`img[data-index="${targetIndex}"]`).remove();
+    $('#image-form').append(buildFileField(fileIndex[targetIndex]));
   });
 });
