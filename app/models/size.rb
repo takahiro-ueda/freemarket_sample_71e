@@ -7,3 +7,8 @@ class Size < ActiveHash::Base
       # {id: 6, name: 'サイス指定なし', category_id:},
   ]
 end
+# db使用時のモデル設定↓
+# class Size < ApplicationRecord
+#   has_many :categories
+#   has_many :items
+# end

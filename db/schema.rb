@@ -65,8 +65,8 @@ ActiveRecord::Schema.define(version: 2020_03_26_105420) do
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "size_id"
-    t.bigint "category_id", null: false
+    t.integer "size_id", null: false
+    t.integer "category_id", null: false
     t.string "name", null: false
     t.string "introduction", null: false
     t.string "brand"
@@ -84,9 +84,7 @@ ActiveRecord::Schema.define(version: 2020_03_26_105420) do
     t.bigint "seller_id", null: false
     t.bigint "buyer_id"
     t.index ["buyer_id"], name: "index_items_on_buyer_id"
-    t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["seller_id"], name: "index_items_on_seller_id"
-    t.index ["size_id"], name: "index_items_on_size_id"
   end
 
   create_table "sizes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -117,8 +115,6 @@ ActiveRecord::Schema.define(version: 2020_03_26_105420) do
   add_foreign_key "comments", "users"
   add_foreign_key "credits", "users"
   add_foreign_key "item_images", "items"
-  add_foreign_key "items", "categories"
-  add_foreign_key "items", "sizes"
   add_foreign_key "items", "users", column: "buyer_id"
   add_foreign_key "items", "users", column: "seller_id"
   add_foreign_key "sizes", "categories"

@@ -12,3 +12,9 @@ class Category < ActiveHash::Base
     {id: 3, name: 'ジーンズパンツ', ancestry: 1/2}
   ]
 end
+# db使用時のモデル設定↓
+# class Category < ApplicationRecord
+#   has_ancestry
+#   belongs_to :size, optional: true
+#   has_many :items
+# end
