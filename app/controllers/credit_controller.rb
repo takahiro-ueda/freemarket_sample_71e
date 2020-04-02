@@ -25,10 +25,8 @@ class CreditController < ApplicationController
     
       if @card.save
         redirect_to action: "show"
-        flash[:notice] = 'クレジットカードの登録が完了しました'
       else
         redirect_to action: "pay"
-        flash[:alert] = 'クレジットカード登録に失敗しました'
       end
     end
   
