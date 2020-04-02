@@ -85,12 +85,13 @@
           %h3.title 新規投稿商品
       .productlists
         - @items.each do |item|
-          -if item.status == "売り出し中"
+          -if item.trade_id == 1 
             .productlist
-              = link_to "productlist" do
+              %p.sale "売り出し中"
+              = link_to item_path(item), method: :get do
                 %figure
-                  - item.item_images.each do |itemsImage|
-                    = image_tag itemsImage.image, height: '140px', width: '156px'
+                  - item.item_images.each do |image|
+                    = image_tag "#{image.image}", class: :sub_image, height: '150px', width: '156px'
                 .productlist--body
                   %h3.name
                     = item.name
@@ -107,6 +108,8 @@
             .productlist
               %p.soldout SOLD OUT
               %figure
+                - item.item_images.each do |image|
+                  = image_tag "#{image.image}", class: :sub_image, height: '150px', width: '156px'
               .productlist--body
                 %h3.name
                   = item.name
@@ -123,7 +126,7 @@
 %aside.appbanner
   .inner
     %h2.inner__title だれでもかんたん、人生を変えるフリマアプリ
-    %p.inner__text　今すぐ無料ダウンロード
+    %p.inner__text 今すぐ無料ダウンロード
     .inner__icon
       %a(href="#")
         = image_tag 'App_Store_Badge.svg', height: '53px', width: '180px', class: 'app'
