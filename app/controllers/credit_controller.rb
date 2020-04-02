@@ -1,6 +1,7 @@
 class CreditController < ApplicationController
   require "payjp"
   before_action :set_card, only: [:delete, :show]
+  
 
   def new
     card = Credit.where(user_id: current_user.id)
@@ -33,43 +34,37 @@ class CreditController < ApplicationController
   
   end
 
-  
-
   def delete #PayjpとCardデータベースを削除します
-    card = Credit.where(user_id: current_user.id).first
-    if card.blank?
+    if @card.blank?
     else
       Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_PRIVATE_KEY]
-      customer = Payjp::Customer.retrieve(card.customer_id)
+      customer = Payjp::Customer.retrieve(@card.customer_id)
       customer.delete
-      card.delete
+      @card.delete
     end
       redirect_to action: "new"
   end
 
   def show #Cardのデータpayjpに送り情報を取り出します
-    card = Credit.where(user_id: current_user.id).first
-    if 
+    if @card.blank?
+      redirect_to action: "new"
+    else
       Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_PRIVATE_KEY]
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      @default_credit_information = customer.cards.retrieve(card.number)
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      @default_credit_information = customer.cards.retrieve(@card.number)
     end
   end
 
-  
-
   private
+
+  def set_card
+    @card = Credit.where(user_id: current_user.id).first
+  end
+
+  
 
   def pay_params
     params.permit(:"payjp_token")
   end
   
-  def card_params
-    params.permit(:'payjp_token',:product_id)
-  end
-
-  def set_card
-    card = Credit.where(user_id: current_user.id).first
-  end
-
 end
