@@ -1,0 +1,123 @@
+.mypage
+  .mypage__content
+    .mypage__content__side 
+      %nav.mypage__content__side__nav
+        %ul.mypage__content__side__nav__list
+          %li
+            = link_to "#", class: "list-item" do
+              マイページ
+              = icon('fas', 'angle-right')
+          %li
+            = link_to "#", class: "list-item" do
+              いいね！一覧
+              = icon('fas', 'angle-right')
+          %li
+            = link_to "#", class: "list-item" do
+              出品した商品
+              = icon('fas', 'angle-right')
+          %li
+            = link_to "#", class: "list-item" do
+              購入した商品
+              = icon('fas', 'angle-right')
+          %li
+            = link_to "#", class: "list-item" do
+              評価一覧
+              = icon('fas', 'angle-right')
+      %h3.mypage__content__side__nav__setting
+        設定
+        %ul.mypage__content__side__nav__list
+          %li
+            = link_to "#", class: "list-item" do
+              プロフィール
+              = icon('fas', 'angle-right')
+          %li
+            = link_to "#", class: "list-item" do
+              発送先・お届け先住所変更
+              = icon('fas', 'angle-right')
+          %li
+            = link_to credit_index_path, class: "list-item" do
+              支払い方法
+              = icon('fas', 'angle-right')
+          %li
+            = link_to "/users/sign_out", method: :delete, class: "list-item" do
+              ログアウト
+              = icon('fas', 'angle-right')
+    .mypage__content__main
+      .credit__main
+        = form_tag( pay_credit_index_path,id: 'charge-form', name: 'inputForm', class: 'main__container') do
+          .main__container__header
+            クレジットカード情報入力
+          .main__container__form
+            .main__container__form__credit
+              .main__container__form__credit__title
+                カード番号
+              .main__container__form__credit__require
+                必須
+              = text_field_tag "number", "", maxlength: "16",type: "text", id: 'card_number', placeholder:"半角数字のみ", class: "main__container__form__credit__number"
+              .main__container__form__credit__image
+                = image_tag("VISAロゴデータ.png", class: "main__container__form__credit__image__icon")
+                = image_tag("unnamed.jpg", class: "main__container__form__credit__image__icon")
+                = image_tag("jcb-logomark-img-01.gif", class: "main__container__form__credit__image__icon")
+                = image_tag("amex-logomark-img-04.gif", class: "main__container__form__credit__image__icon")
+                = image_tag("diners-logomark-img-01.gif", class: "main__container__form__credit__image__icon")
+                = image_tag("discover-logomark-img-08.gif", class: "main__container__form__credit__image__icon")
+            .main__container__form__limit
+              .main__container__form__limit__title
+                有効期限
+              .main__container__form__limit__require
+                必須
+              .main__container__form__limit__form
+                .main__container__form__limit__month
+                  %select#exp_month{name: "exp_month", type: "text"}
+                    %option{value: ""} --
+                    %option{value: "1"}01
+                    %option{value: "2"}02
+                    %option{value: "3"}03
+                    %option{value: "4"}04
+                    %option{value: "5"}05
+                    %option{value: "6"}06
+                    %option{value: "7"}07
+                    %option{value: "8"}08
+                    %option{value: "9"}09
+                    %option{value: "10"}10
+                    %option{value: "11"}11
+                    %option{value: "12"}12
+                  %span 月
+                .main__container__form__limit__year
+                  %select#exp_year{name: "exp_year", type: "text"}
+                    %option{value: ""} --
+                    %option{value: "2019"}19
+                    %option{value: "2020"}20
+                    %option{value: "2021"}21
+                    %option{value: "2022"}22
+                    %option{value: "2023"}23
+                    %option{value: "2024"}24
+                    %option{value: "2025"}25
+                    %option{value: "2026"}26
+                    %option{value: "2027"}27
+                    %option{value: "2028"}28
+                    %option{value: "2029"}29
+                  %span 年
+            .main__container__form__security
+              .main__container__form__security__title
+                セキュリティーコード
+              .main__container__form__security__require
+                必須
+              = text_field_tag "cvc", "", maxlength: "4",type: "text", id: "cvc", placeholder:"カードの背面4桁もしくは3桁の番号", class: "main__container__form__security__number"
+              #card_token
+            .main__container__form__question
+              .main__container__form__question__mark
+                %span ?
+                カードの裏面の番号とは？
+            .main__container__form__btn
+              = submit_tag "追加する",  id:"token_submit", class: "main__container__form__btn__red" 
+%aside.banner
+  .mypage__inner-box
+    %h2.mypage__inner-box__title だれでもかんたん、人生を変えるフリマアプリ
+    %p.mypage__inner-box__text 今すぐ無料ダウンロード！
+    %div.mypage__inner-box__icon
+      = link_to '#' do
+        =image_tag("http://furima.tokyo/assets/app-store-9c5e28e8f81bd9912e0ded2f78821e04778a1356c05dc7c7bf1e88614be37c34.svg", class: "inner-box__icon__btn-a")
+      =link_to '#' do
+        =image_tag("http://furima.tokyo/assets/google-play-469c63f1269e456307c4dde176b33cc3bbbbf142ac4d7369656010130149db1a.svg", class: "inner-box__icon__btn-b")
+
