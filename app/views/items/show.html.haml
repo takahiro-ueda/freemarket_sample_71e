@@ -46,6 +46,45 @@
           .main__show__contents__range__item__table 
             %table
               %tbody
+              - if @category.ancestry == nil
+                %tr
+                  %th 出品者
+                  %td 
+                    = @user.nickname
+                %tr
+                  %th カテゴリー  
+                  %td
+                    = link_to "#" do
+                      = @category.name 
+                %tr
+                  %th ブランド
+                  %td 
+                    = @item.brand
+                %tr
+                  %th 商品サイズ
+                  %td
+                    = @size.size 
+                %tr
+                  %th 商品の状態
+                  %td 
+                    = @status.name
+                %tr
+                  %th 配送の方法
+                  %td 
+                    = @delivery.name
+                %tr
+                  %th 配送料の負担
+                  %td 
+                    = @payer.name
+                %tr
+                  %th 発送元の地域
+                  %td
+                    = @prefecture.name
+                %tr
+                  %th 発送日の目安
+                  %td 
+                    = @duration.name
+              - elsif @category.ancestry.include?("/")
                 %tr
                   %th 出品者
                   %td 
@@ -61,6 +100,47 @@
                     %br
                     = link_to "#" do
                       = @category.name 
+                %tr
+                  %th ブランド
+                  %td 
+                    = @item.brand
+                %tr
+                  %th 商品サイズ
+                  %td
+                    = @size.size 
+                %tr
+                  %th 商品の状態
+                  %td 
+                    = @status.name
+                %tr
+                  %th 配送の方法
+                  %td 
+                    = @delivery.name
+                %tr
+                  %th 配送料の負担
+                  %td 
+                    = @payer.name
+                %tr
+                  %th 発送元の地域
+                  %td
+                    = @prefecture.name
+                %tr
+                  %th 発送日の目安
+                  %td 
+                    = @duration.name
+              - else 
+                %tr
+                  %th 出品者
+                  %td 
+                    = @user.nickname
+                %tr
+                  %th カテゴリー  
+                  %td
+                    = link_to "#" do  
+                      = @category.parent.name
+                    %br
+                    = link_to "#" do
+                      = @category.name
                 %tr
                   %th ブランド
                   %td 
