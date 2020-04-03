@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'address/edit'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }
