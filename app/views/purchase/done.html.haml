@@ -1,0 +1,82 @@
+.purchase__done__all
+  .purchase__all__header
+    .purchase__all__header__images
+      .purchase__all__header__images__upper
+        = link_to image_tag("logo.png",size:"185x49",class:"purchase__confirmation__icon__1"),root_path
+    .purchase__all__header__middle
+      .purchase__all__header__middle__content
+        .purchase__all__header__middle__content__uppername
+          = icon('far', 'clock', class: 'main__content__line__btn--mail__icon')
+          発送をお待ちください
+        .purchase__all__header__middle__content__uppername__undername
+          出品者からの発送通知をお待ちください
+    .purchase__all__done
+      .purchase__all__done__finish
+        購入が完了しました
+    .purchase__all__images
+      .purchase__all__images__content
+        = image_tag "#{@item.item_images.first.image}",size:"100x100"
+      .purchase__all__images__name
+        = @item.name
+    .purchase__all__price
+      .purchase__all__price__include
+      = "¥" + @item.price.to_s
+    .purchase__all__express
+      .purchase__all__express__name
+        配送先
+      .purchase__all__express__address
+        = "〒" + current_user.address.zip_code.to_s
+      .purchase__all__express__details
+        = @prefecture
+        = current_user.address.municipality
+        = current_user.address.address
+        = current_user.address.building_name if current_user.address.building_name?
+    .purchase__all__pay
+      .purchase__all__pay__pay
+        支払い方法
+      .purchase__all__pay__card
+        クレジットカード
+      .purchase__all__pay__card__number
+        - if @default_credit_information.blank?
+          %br /
+        - else
+          = "**** **** **** " + @default_credit_information.last4
+      .purchase__all__pay_card__confirmation
+        - exp_month = @default_credit_information.exp_month.to_s
+        - exp_year = @default_credit_information.exp_year.to_s.slice(2,3)
+        = "有効期限 " + exp_month + ' / ' + exp_year
+      = icon('fab','cc-jcb',class: 'purchase__confirmation__main__payment__card__info__icon')
+
+    .purchase__all__description
+      .purchase__all__description__content
+        発送通知後の流れ
+      .purchase__all__description__content__face
+        .purchase__all__description__content__face__icons
+          = icon('fas', 'smile', class: 'item__detailpage__box__main__text__box__content__icons__1')
+        .purchase__all__description__content__face__icons__text
+          = icon('fas', 'meh', class: 'item__detailpage__box__main__text__box__content__icons__2')
+        .purchase__all__description__content__face__icons__text
+          = icon('fas', 'frown', class: 'item__detailpage__box__main__text__box__content__icons__3')
+      .purchase__all__description__face__1
+        商品を受け取ったら
+      .purchase__all__description__face__2
+        出品者の評価をしましょう。
+      .purchase__all__descriotion__face__3
+        購入代金が出品者に振り込まれます。
+      .purchase__all__descriotion__face__4
+        評価後に取引は完了です。
+    .purchase__all__link
+      =link_to "トップページへもどる",root_path
+.purchase__bottom
+  .purchase__bottom__terms
+    .purchase__bottom__terms__1
+      = link_to 'プライバシーポリシー','#'
+    .purchase__bottom__terms__2
+      = link_to 'カリメル利用規約','#'
+    .purchase__bottom__terms__3
+      = link_to '特定取引に関する表記'
+  .purchase__bottom__icon
+    .purchase__bottom__icon__1
+      = link_to image_tag("logo.png",size:"100x65",class:"confirmation__icon__1")
+      .purchase__bottom__icon__1__text
+        © FURIMA.
