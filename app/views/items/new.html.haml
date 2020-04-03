@@ -46,8 +46,11 @@
             .item-content__fild__dt__label カテゴリー
             .item-content__fild__dt__required 必須
           .item-content__text-select
-            = f.collection_select :category_id, Category.all, :id, :name
-
+            = f.collection_select :category_id, Category.all.order("id ASC").limit(13), :id, :name 
+          .item-content__text-select
+            = f.collection_select :category_id, Category.all, :id, :name        
+          .item-content__text-select
+            = f.collection_select :category_id, Category.all, :id, :name 
         .item-content__fild
           .item-content__fild__dt
             .item-content__fild__dt__label サイズ
