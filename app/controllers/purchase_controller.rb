@@ -21,6 +21,8 @@ class PurchaseController < ApplicationController
   end
 
   def done
+    
+    # テーブル紐付けてるのでログインユーザーのクレジットカードを引っ張ってくる
     Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_PRIVATE_KEY]
     #保管した顧客IDでpayjpから情報取得
     customer = Payjp::Customer.retrieve(@card.customer_id)
@@ -29,8 +31,9 @@ class PurchaseController < ApplicationController
 
     @prefecture = Prefecture.find(current_user.address.prefecture_id).name # ログインユーザが持つ、prefecture_IDの都道府県を抽出する
 
-    @product_purchaser= Trade.find(params[:item_id])
-    @product_purchaser.update(buyer_id: current_user.id)
+    # @product_purchaser= Trade.find(params[:item_id])
+    @item_purchaser = Item.find(params[:item_id])
+    @item_purchaser.update(buyer_id: current_user.id)
   end
 
   def pay
