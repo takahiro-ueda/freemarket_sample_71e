@@ -27,10 +27,11 @@
   overflow: scroll;
   &__content {
     width: 1020px;
-    margin: 40px 200px ;
+    margin: 40px 40px ;
+    display: flex;
+    justify-content: space-between;
     &__side {
-      float: left;
-      width: 280px;
+      width: 220px;
       margin-right: 40px;
       &__nav {
         margin: 0 ;
@@ -83,7 +84,6 @@
       }
     }
     &__main {
-      float: right;
       width: 700px;
       &__user {
         padding: 20px;
