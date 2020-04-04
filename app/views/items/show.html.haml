@@ -21,7 +21,7 @@
               %span (税込）
               %span 送料込み
             - if user_signed_in? && @item.seller_id != current_user.id           
-              = link_to "#", class: "price-btn " do
+              = link_to item_purchase_index_path(@item), class: "price-btn " do
                 .main__show__contents__range__item__price__button
                   %span.price-btn 
                   購入画面に進む 
