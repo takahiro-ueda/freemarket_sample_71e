@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :users, :only => [:index, :show,]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :items
-  resources :address, only: [:edit, :update]
+  resources :address, only: [:show, :edit, :update]
 
   resources :credit, only: [:new, :show] do
     collection do

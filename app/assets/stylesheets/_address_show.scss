@@ -1,0 +1,147 @@
+* {
+  box-sizing: border-box;
+}
+.mypage {
+  &__content {
+    &__main {
+      &__title {
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 35px;
+        background-color: #3CCACE;
+        color: white;
+        margin-bottom: 3px;
+      }
+    }
+  }
+}
+.profile__content__main__container {
+  width: 100%;
+  background-color: white;
+  margin-top: 10px;
+}
+.profile-page {
+  height: 100vh;
+  width: 100%;
+  background-image: url(bg-mainVisual-pict_pc.jpg);
+  background-size: cover;
+  &__inner {
+    // width: 350px;
+    padding:20px 50px;
+    margin: 0 auto;
+    // text-align: center;
+    background-color: white;
+    overflow-y: scroll;
+    &__head{
+      color: #000;
+      padding: 20px 0 10px 0;
+      font-size: 24px;
+      text-align: left;
+    }
+    &__field{
+      width: 100%;
+      margin-bottom: 10px;
+      display: flex;
+      &__label{
+        padding: 20px 0;
+        letter-spacing: 1px;
+        font-size: 14px;
+        font-weight: 200;
+        width: 100%;
+      }
+      &__nonull{
+        padding: 15px;
+        p{
+          background-color: red;
+          color: #fff;
+          height: 20px;
+          width: 30px;
+          line-height: 20px;
+          font-size: 10px;
+          border-radius: 5px;
+        }
+      }
+      &__null{
+        padding: 15px;
+        p{
+          color:black;
+          height: 20px;
+          width: 30px;
+          line-height: 20px;
+          font-size: 15px;
+          border-radius: 5px;
+        }
+      }
+      &__input {
+        input {
+          width: 250px;
+          padding: 10px;
+          letter-spacing: 1px;
+        }
+        .name {
+          letter-spacing: 1px;
+          width: 100px;
+          padding: 10px;
+          margin-right: 10px;
+        }
+      }
+      .field-label {
+        .field_with_errors {
+          display: inline-block;
+          color: #d65f4c;
+          font-weight: 400;
+        }
+      }
+      .field-input {
+        .field_with_errors {
+          position: relative;
+          &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 5px;
+            background-color: #d65f4c;
+          }
+        }
+      }
+    }
+    .btn {
+      background-color: #3CCACE;
+      color: #fff;
+      display: inline-block;
+      height: 50px;
+      width: 200px;
+      padding: 0 30px;
+      line-height: 50px;
+      letter-spacing: 1px;
+      text-align: center;
+      border-radius: 10px;
+    }
+    
+  }
+  &__note{
+    width: 600px;
+    height: 50px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: white;
+  }
+  &__sin{
+    width: 600px;
+    height: 50px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: white;
+  }
+  &__sing-up{
+    width: 600px;
+    height: 100px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: white;
+  }
+}

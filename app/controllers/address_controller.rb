@@ -1,4 +1,11 @@
 class AddressController < ApplicationController
+
+  def show
+    @address = Address.find(params[:id])
+    @prefecture = @address.prefecture
+    @user = @address.user
+  end
+
   def edit
     @address = Address.find(params[:id])
   end

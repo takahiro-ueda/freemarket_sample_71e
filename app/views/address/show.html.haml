@@ -4,7 +4,7 @@
       %nav.mypage__content__side__nav
         %ul.mypage__content__side__nav__list
           %li
-            = link_to "#", class: "list-item" do
+            = link_to user_path(current_user.id), class: "list-item" do
               マイページ
               = icon('fas', 'angle-right')
           %li
@@ -27,7 +27,7 @@
           設定
         %ul.mypage__content__side__nav__list
           %li
-            = link_to address_path, class: "list-item" do
+            = link_to "#", class: "list-item" do
               プロフィール
               = icon('fas', 'angle-right')
           %li
@@ -43,6 +43,8 @@
               ログアウト
               = icon('fas', 'angle-right')
     .mypage__content__main
+      .mypage__content__main__title
+        %h2 プロフィール
       .mypage__content__main__user
         =link_to '#' do
           %figure.mypage__content__main__user__img
@@ -56,16 +58,38 @@
             .mypage__content__main__user__status__sell
               出品数
               %span 00
-      .mypage__content__main__container
-        %h2.mypage__content__main__container__header 購入した商品
-        %ul.mypage__content__main__container__tab
-          %li.mypage__content__main__container__tab__1
-            = link_to '取引中', "#"
-            
-          %li.mypage__content__main__container__tab__2
-            = link_to '過去の取引', "#"
-        .mypage__content__main__container__content
-          = render 'item-list'
+      .profile__content__main__container
+        .profile-page__inner.clearfix.user-form
+          = form_for(@address) do |f|
+            = render "devise/shared/error_messages", resource: @address
+            .profile-page__inner__field
+              .profile-page__inner__field__label
+                = f.label :名前：　　
+                %span
+                  = @address.family_name
+                  = @address.first_name
+            .profile-page__inner__field
+              .profile-page__inner__field__label
+                = f.label :電話番号：
+                %span
+                  = @address.tel
+            .profile-page__inner__field
+              .profile-page__inner__field__label
+                = f.label :郵便番号：
+                %span
+                  = @address.zip_code
+            .profile-page__inner__field
+              .profile-page__inner__field__label
+                = f.label :都道府県：
+                %span
+                  = @prefecture.name
+                %span
+                  = @address.municipality
+                %span
+                  = @address.address
+                %span
+                  = @address.building_name
+
 %aside.banner
   .mypage__inner-box
     %h2.mypage__inner-box__title だれでもかんたん、人生を変えるフリマアプリ
