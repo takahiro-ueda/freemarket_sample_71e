@@ -2,6 +2,9 @@
   box-sizing: border-box;
 }
 
+#address-page {
+  overflow-y: scroll;
+}
 .address-page {
   height: 100vh;
   width: 100%;
