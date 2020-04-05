@@ -1,0 +1,39 @@
+.productlists
+  - items.each do |item|
+    -if item.trade_id == 1 
+      .productlist
+        %p.sale "売り出し中"
+        = link_to item_path(item), method: :get do
+          %figure
+            - item.item_images.each do |image|
+              = image_tag "#{image.image}", class: :sub_image, height: '150px', width: '156px'
+          .productlist--body
+            %h3.name
+              = item.name
+            .details
+              %ul
+                %li
+                  = item.price
+                  円
+                %li
+                  = image_tag 'star.svg', height: '15px', width: '15px'
+                  0
+              %p (税込)
+    -else
+      .productlist
+        %p.soldout SOLD OUT
+        %figure
+          - item.item_images.each do |image|
+            = image_tag "#{image.image}", class: :sub_image, height: '150px', width: '156px'
+        .productlist--body
+          %h3.name
+            = item.name
+          .details
+            %ul
+              %li
+                = item.price
+                円
+              %li
+                = image_tag 'star.svg', height: '15px', width: '15px'
+                0
+            %p (税込)
