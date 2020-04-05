@@ -39,13 +39,19 @@ class PurchaseController < ApplicationController
 
     Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_PRIVATE_KEY]
     Payjp::Charge.create(
-      :amount => @item.price, #支払金額（itemテーブル等に紐づけても良い）
-      :customer => @card.customer_id, #顧客ID
-      :currency => 'jpy', #日本円
+      amount:  @item.price, #支払金額（itemテーブル等に紐づけても良い）
+      customer: @card.customer_id, #顧客ID
+      currency: 'jpy', #日本円
     )
     @item.buyer_id = current_user.id
-    @item.save
-    redirect_to action: 'done' #完了画面に移動
+    
+    if @item.save
+      flash[:notice] = '購入しました。'
+      redirect_to action: 'done' #完了画面に移動
+    else
+      flash[:alert] = '購入に失敗しました。'
+      redirect_to action: "index"
+    end
   end
 
   private
