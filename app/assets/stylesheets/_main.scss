@@ -211,12 +211,17 @@
         margin: 26px auto;
         display: flex;
         justify-content: space-around;
-        .productlist{
+        &__productlist{
+          position: relative;
           width: 220px;
           display: inline-block;
           float: left;
           background-color: white;
-
+          .sub_image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+          }
           .soldout{ /* 2020/3/28 高田追記 */
             background-color: red;
             color: white;

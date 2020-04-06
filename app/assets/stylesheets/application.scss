@@ -9,7 +9,7 @@
 @import "new";
 @import "show";
 @import "mypage";
-@import "error";
+@import "address_show";
 
 
 .pcHeader{
@@ -181,3 +181,5 @@
 @import "credit_show";
 @import "purchase/index";
 @import "purchase/done";
+@import "error_message";
+@import "_address_edit";

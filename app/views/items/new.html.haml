@@ -1,8 +1,8 @@
 = form_for @item do |f|
-  = render partial: "error"
   .container
     .main
       .item-content
+        = render "devise/shared/error_messages", resource: @item
         .item-content__fild
           .item-content__fild__dt
             .item-content__fild__dt__label 出品画像

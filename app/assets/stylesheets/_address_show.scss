@@ -1,17 +1,34 @@
 * {
   box-sizing: border-box;
 }
-.address-page {
+.mypage {
+  &__content {
+    &__main {
+      &__title {
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 35px;
+        background-color: #3CCACE;
+        color: white;
+        margin-bottom: 3px;
+      }
+    }
+  }
+}
+.profile__content__main__container {
+  width: 100%;
+  background-color: white;
+  margin-top: 10px;
+}
+.profile-page {
   height: 100vh;
   width: 100%;
   background-image: url(bg-mainVisual-pict_pc.jpg);
   background-size: cover;
   &__inner {
-    height: 800px;
-    width: 600px;
-    padding: 0 50px;
+    padding:20px 50px;
     margin: 0 auto;
-    text-align: center;
     background-color: white;
     overflow-y: scroll;
     &__head{
@@ -29,7 +46,7 @@
         letter-spacing: 1px;
         font-size: 14px;
         font-weight: 200;
-        width: 150px;
+        width: 100%;
       }
       &__nonull{
         padding: 15px;

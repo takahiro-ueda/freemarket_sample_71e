@@ -1,0 +1,67 @@
+#address-page.account-page
+  .address-page__inner-edit.clearfix.user-form
+    %h1.address-page__inner__head 送付先 編集
+    = form_for(@address) do |f|
+      = render "devise/shared/error_messages", resource: @address
+      .address-page__inner__field
+        .address-page__inner__field__label
+          = f.label :姓名（漢字）
+        .address-page__inner__field__nonull
+          %p 必須
+        .address-page__inner__field__input
+          = f.text_field :family_name, class: "name",placeholder: "漢字姓"
+        .address-page__inner__field__input
+          = f.text_field :first_name, class: "name",placeholder: "漢字名"
+      .address-page__inner__field
+        .address-page__inner__field__label
+          = f.label :姓名（カナ）
+        .address-page__inner__field__nonull
+          %p 必須
+        .address-page__inner__field__input
+          = f.text_field :family_name_kana, class: "name",placeholder: "カナ姓"
+        .address-page__inner__field__input
+          = f.text_field :first_name_kana, class: "name",placeholder: "カナ名"
+      .address-page__inner__field
+        .address-page__inner__field__label
+          = f.label :電話番号
+        .address-page__inner__field__null
+          %p 任意
+        .address-page__inner__field__input
+          = f.telephone_field	 :tel,placeholder: "電話番号"
+      .address-page__inner__field
+        .address-page__inner__field__label
+          = f.label :都道府県
+        .address-page__inner__field__nonull
+          %p 必須
+        .address-page__inner__field__input
+          = f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: "",class: "prefecture"
+      .address-page__inner__field
+        .address-page__inner__field__label
+          = f.label :郵便番号
+        .address-page__inner__field__nonull
+          %p 必須
+        .address-page__inner__field__input
+          = f.number_field :zip_code,placeholder: "郵便番号"
+      .address-page__inner__field
+        .address-page__inner__field__label
+          = f.label :市区町村
+        .address-page__inner__field__nonull
+          %p 必須
+        .address-page__inner__field__input
+          = f.text_field :municipality,placeholder: "市区町村"
+      .address-page__inner__field
+        .address-page__inner__field__label
+          = f.label :番地
+        .address-page__inner__field__nonull
+          %p 必須
+        .address-page__inner__field__input
+          = f.text_field :address,placeholder: "番地"
+      .address-page__inner__field
+        .address-page__inner__field__label
+          = f.label :建物名
+        .address-page__inner__field__null
+          %p 任意
+        .address-page__inner__field__input
+          = f.text_field :building_name,placeholder: "建物名"
+      .actions
+        = f.submit "変更する", class: 'btn'
