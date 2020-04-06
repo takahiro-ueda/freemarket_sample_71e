@@ -82,6 +82,7 @@ class ItemsController < ApplicationController
       :status_id,
       :brand,
       :category_parent_id,
+      :category_root_id,
       item_images_attributes: [:image, :_destroy, :id]
       ).merge(seller_id: current_user.id)
   end

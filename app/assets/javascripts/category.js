@@ -67,7 +67,7 @@ $(function(){
 
 
   // document､もしくは親を指定しないと発火しない
-  $(product_select-children).on('change', '#child_category', function(){
+  $(document).on('change', '#child_category', function(){
     var productcategory = document.getElementById('child_category').value;
     if (productcategory != '---'){
     $.ajax ({
@@ -76,19 +76,17 @@ $(function(){
       data: { productcategory: productcategory },
       dataType: 'json'
     })
-
     .done(function(grandchildren){
-      if (grandchildren.length != 0) {
-        $('#grandchildren_wrapper').remove(); //子が変更された時、孫以下を削除するする
-        $('#size_wrapper').remove();
-        $('#brand_wrapper').remove();
-        var insertHTML = '';
-        grandchildren.forEach(function(grandchild){
-          insertHTML += appendOption(grandchild);
+      var insertHTML = '';
+      grandchildren.forEach(function(grandchild){
+        insertHTML += appendOption(grandchild);
         });
-        appendGrandchidrenBox(insertHTML);
-      }
-    }) 
+        appendgrandChidrenBox(insertHTML); 
+         
+        $(document).on('change', '#child_category',function(){
+          $('#grandchildren_wrapper').remove();
+          })
+        }) 
         .fail(function(){
           alert('カテゴリー取得に失敗しました');
         })
