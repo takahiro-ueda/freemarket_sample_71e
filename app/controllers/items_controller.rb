@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, except: [:index, :new, :create]
   before_action :set_item, only: [:show, :destroy,:edit,:update]
-  before_action :set_itemimage, only: [:edit, :update]
+  before_action :set_item_images, only: [:edit, :update]
   def index
     @items = Item.includes(:item_images).order(created_at: "DESC").limit(3)
   end
@@ -85,7 +85,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def set_itemimage
+  def set_item_images
     @item_images = @item.item_images
   end
 end
