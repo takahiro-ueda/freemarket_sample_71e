@@ -3,11 +3,11 @@
     .main
       .item-content
         = render "devise/shared/error_messages", resource: @item
-        .item-content__fild
+        .item-content__fild-edit
           .item-content__fild__dt
             .item-content__fild__dt__label 出品画像
             .item-content__fild__dt__required 必須
-          #image-form-edit
+          #image-form
             #previews
               - if @item.persisted?
                 - @item_images.each_with_index do |image, i|

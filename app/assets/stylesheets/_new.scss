@@ -40,12 +40,14 @@ body {
       border-bottom: solid 1px #f8f8f8;
       padding: 10px 40px;
       width: 910px;
-      &__fild{
-        #image-form-edit {
+      &__fild-edit {
+        #image-form {
           #previews img {
             @include image;
           }
         }
+      }
+      &__fild {
         #image-form {
           #previews img {
             @include image;
