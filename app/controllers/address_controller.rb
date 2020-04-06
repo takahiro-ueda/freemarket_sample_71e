@@ -1,17 +1,16 @@
 class AddressController < ApplicationController
+  before_action :set_address, only: [:show, :edit, :update]
 
   def show
-    @address = Address.find(params[:id])
     @prefecture = @address.prefecture
     @user = @address.user
   end
 
   def edit
-    @address = Address.find(params[:id])
+
   end
 
   def update
-    @address = Address.find(params[:id])
     if @address.update(address_params)
       redirect_to user_path(current_user.id)
     else
@@ -37,5 +36,9 @@ class AddressController < ApplicationController
       :address,
       :building_name
     ).merge(user_id: current_user.id)
+  end
+
+  def set_address
+    @address = Address.find(params[:id])
   end
 end

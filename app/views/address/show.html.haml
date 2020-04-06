@@ -39,7 +39,7 @@
               支払い方法
               = icon('fas', 'angle-right')
           %li
-            = link_to "/users/sign_out", method: :delete, class: "list-item" do
+            = link_to destroy_user_session, method: :delete, class: "list-item" do
               ログアウト
               = icon('fas', 'angle-right')
     .mypage__content__main
