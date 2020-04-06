@@ -9,11 +9,11 @@
           .main__show__contents__range__item__image
           %ul
             %li.image
-              = image_tag "#{@item.item_images.first.image}", class: :main_image, height: '100%', width: '100%'
+              = image_tag "#{@item.item_images.first.src}", class: :main_image, height: '100%', width: '100%'
             .main__show__contents__range__item__image__sub
             %ul  
             - @item.item_images.each do |image|
-              = image_tag "#{image.image}", class: :sub_image, height: '150', width: '150'
+              = image_tag "#{image.src}", class: :sub_image, height: '150', width: '150'
           .main__show__contents__range__item__price
             %span.price 
               = "#{@item.price}円"
