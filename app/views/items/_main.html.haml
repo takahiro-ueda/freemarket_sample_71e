@@ -91,7 +91,7 @@
               = link_to item_path(item), method: :get do
                 %figure
                   - item.item_images.each do |image|
-                    = image_tag "#{image.image}", class: :sub_image, height: '150px', width: '156px'
+                    = image_tag "#{image.src}", class: :sub_image, height: '150px', width: '156px'
                 .productlist--body
                   %h3.name
                     = item.name
@@ -109,7 +109,7 @@
               %p.soldout SOLD OUT
               %figure
                 - item.item_images.each do |image|
-                  = image_tag "#{image.image}", class: :sub_image, height: '150px', width: '156px'
+                  = image_tag "#{image.src}", class: :sub_image, height: '150px', width: '156px'
               .productlist--body
                 %h3.name
                   = item.name

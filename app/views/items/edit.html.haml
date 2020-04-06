@@ -3,17 +3,30 @@
   .container
     .main
       .item-content
+        = render "devise/shared/error_messages", resource: @item
         .item-content__fild
           .item-content__fild__dt
             .item-content__fild__dt__label 出品画像
             .item-content__fild__dt__required 必須
+
           #image-form
             #previews
+              - if @item.persisted?
+                - @item_images.each_with_index do |image, i|
+                  = image_tag image.src.url, data: { index: i }
             = f.fields_for :item_images do |image|
               .js-box{data: { index: image.index }}
                 = image.file_field :src, class: "js-file" 
                 %br/
                 %span.js-remove 削除
+              - if @item.persisted?
+                = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+            - if (@item.persisted? && @item_images.length < 4)
+              .js-box{ data:{ index: @item.item_images.count } }
+                = f.file_field :src, name: "item[item_images_attributes][#{@item.item_images.count}][src]", class: "js-file" 
+                %br/
+                %span.js-remove 削除
+
       -# 商品名/商品説明
       .item-content
         .item-content__fild
@@ -21,13 +34,13 @@
             .item-content__fild__dt__label 商品名
             .item-content__fild__dt__required 必須
           .item-content__text-fild
-            = f.text_field :name, class: "text", placeholder: "40文字まで"
+            = f.text_field :name, class: "text", placeholder: "40文字まで", value: @item.name
       .item-content
         .item-content__fild__dt
           .item-content__fild__dt__label 商品説明
           .item-content__fild__dt__required 必須
         .item-content__text-area
-          = f.text_area :introduction, rows: "4", placeholder: "商品の説明"
+          = f.text_area :introduction, rows: "4", placeholder: "商品の説明", value: @item.introduction
       -# 商品詳細/カテゴリー/サイズ/ブランド/商品の状態
       .item-content
         .item-content__fild
@@ -37,7 +50,6 @@
             .item-content__fild__dt__required 必須
           .item-content__text-select
             = f.collection_select :category_id, Category.all, :id, :name
-
         .item-content__fild
           .item-content__fild__dt
             .item-content__fild__dt__label サイズ
@@ -49,13 +61,13 @@
               .item-content__fild__dt__label ブランド
               .item-content__fild__dt__any 任意
             .item-content__text-fild
-              = f.text_field :brand, placeholder: "シャネルなど"
+              = f.text_field :brand, placeholder: "シャネルなど", value: @item.brand
           .item-content__fild
             .item-content__fild__dt
               .item-content__fild__dt__label 商品の状態
               .item-content__fild__dt__required 必須
             .item-content__text-select
-              = f.collection_select :status_id, Status.all, :id, :name, prompt: ""
+              = f.collection_select :status_id, Status.all, :id, :name
         -# 配送について/配送の負担/発送の方法/発送元の地域/発送までの日数
       .item-content
         .item-content__fild
@@ -64,25 +76,25 @@
             .item-content__fild__dt__label 配送の負担
             .item-content__fild__dt__required 必須
           .item-content__text-select
-            = f.collection_select :payer_id, Payer.all, :id, :name, prompt: ""
+            = f.collection_select :payer_id, Payer.all, :id, :name
         .item-content__fild
           .item-content__fild__dt
             .item-content__fild__dt__label 発送の方法
             .item-content__fild__dt__required 必須
           .item-content__text-select
-            = f.collection_select :delivery_id, Delivery.all, :id, :name, prompt: ""
+            = f.collection_select :delivery_id, Delivery.all, :id, :name
         .item-content__fild
           .item-content__fild__dt
             .item-content__fild__dt__label 発送元の地域
             .item-content__fild__dt__required 必須
           .item-content__text-select
-            = f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: ""
+            = f.collection_select :prefecture_id, Prefecture.all, :id, :name
         .item-content__fild
           .item-content__fild__dt
             .item-content__fild__dt__label 発送までの日数
             .item-content__fild__dt__required 必須
           .item-content__text-select
-            = f.collection_select :duration_id, Duration.all, :id, :name, prompt: ""
+            = f.collection_select :duration_id, Duration.all, :id, :name
       -# 価格/出品ボタン/もどるリンク
       .item-content
         .item-content__fild
@@ -91,7 +103,7 @@
             .item-content__fild__dt__label 価格
             .item-content__fild__dt__required 必須
           .item-content__text-fild
-            = f.number_field :price, placeholder: "¥0"
+            = f.number_field :price, placeholder: "¥0", value: @item.price
             = f.hidden_field :trade_id, value: "1"
         .item-content__reactid
           = f.submit "出品する", class: "sellbtn"
