@@ -10,10 +10,12 @@
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %script{src: "//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js", type: "text/javascript"}
+
   %header{:class => "pcHeader"}
     .pcHeader__headerInner
       .pcHeader__headerInner__mainHeader
-        %a(href="#")
+        %a(href="/")
           = image_tag 'logo.png', height: '40px', width: '150px', alt: 'icon', class: 'pcHeader__headerInner__mainHeader__app'
         .pcHeader__headerInner__mainHeader__searchBox
           = text_field_tag '', '', placeholder: 'キーワードから探す', class: 'pcHeader__headerInner__mainHeader__searchBox__box'
