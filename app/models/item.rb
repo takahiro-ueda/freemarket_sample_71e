@@ -13,7 +13,7 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :item_images, allow_destroy: true
   has_many :comments, dependent: :destroy
   
-  validates :category_id, :name, :introduction, :price, :seller_id,:item_images, presence: true
+  validates :category_id, :name, :introduction, :price, :seller_id, :item_images, presence: true
 
   validates :name,
     length: { maximum:40, message: "入力は４０文字までです。"}
