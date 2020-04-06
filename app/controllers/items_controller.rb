@@ -8,6 +8,15 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.item_images.new
+    @category = Category.all.order("id ASC").limit(13) # categoryの親を取得
+    def category_children  
+      @category_children = Category.find(params[:productcategory]).children 
+    end
+    # Ajax通信で送られてきたデータをparamsで受け取り､childrenで子を取得
+    def category_grandchildren
+      @category_grandchildren = Category.find(params[:productcategory]).children
+    end
+    # Ajax通信で送られてきたデータをparamsで受け取り､childrenで孫を取得｡（実際には子カテゴリーの子になる｡childrenは子を取得するメソッド)
   end
 
   def create
@@ -72,6 +81,7 @@ class ItemsController < ApplicationController
       :size_id,
       :status_id,
       :brand,
+      :category_parent_id,
       item_images_attributes: [:image, :_destroy, :id]
       ).merge(seller_id: current_user.id)
   end

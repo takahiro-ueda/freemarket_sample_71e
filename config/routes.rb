@@ -10,7 +10,14 @@ Rails.application.routes.draw do
   root 'items#index'
   resources :users, :only => [:index, :show,]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :items
+  resources :items, only: [:index,:new,:create]
+  resources :categories ,only: :new
+  resources :items do 
+    collection do
+      get 'category_children' 
+      get 'category_grandchildren'
+    end
+  end
 
   resources :credit, only: [:new, :show] do
     collection do
