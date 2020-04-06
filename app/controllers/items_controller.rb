@@ -13,6 +13,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @item.item_images.new
     unless @item.valid?
       flash.now[:alert] = @item.errors.full_messages
       render :new and return
