@@ -59,10 +59,10 @@
       .mypage__content__main__container
         %h2.mypage__content__main__container__header 購入した商品
         %ul.mypage__content__main__container__tab
-          %li.mypage__content__main__container__tab__1
+          %li.tab-menu
             = link_to '取引中', "#"
             
-          %li.mypage__content__main__container__tab__2
+          %li.tab-menu
             = link_to '過去の取引', "#"
         .mypage__content__main__container__content
           = render 'item-list'
