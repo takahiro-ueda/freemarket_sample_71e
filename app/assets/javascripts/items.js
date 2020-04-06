@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', ()=> {
+$(document).on('turbolinks:load', function() {
   const buildFileField = (index)=> {
     const html = `<div data-index="${index}" class="js-box">
                     <input class="js-file" type="file"

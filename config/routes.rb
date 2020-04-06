@@ -20,4 +20,15 @@ Rails.application.routes.draw do
       post 'delete', to: 'credit#delete'
     end
   end
+
+
+  resources :items do
+    resources :purchase, only: [:index] do
+      collection do
+        get 'done', to: 'purchase#done'
+        post 'pay', to: 'purchase#pay'
+      end
+    end
+  end
+
 end
