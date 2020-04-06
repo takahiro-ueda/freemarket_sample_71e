@@ -9,11 +9,10 @@
   box-sizing: border-box;
 }
 
-@mixin item-content-box {
-  margin: 0 auto;
-  background-color: white;
-  border-bottom: solid 1px #f8f8f8;
-  padding: 40px;
+@mixin image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
 }
 
 body {
@@ -36,14 +35,20 @@ body {
   .main {
     margin: 0 auto;
     .item-content {
-      @include item-content-box;
+      margin: 0 auto;
+      background-color: white;
+      border-bottom: solid 1px #f8f8f8;
+      padding: 40px;
       width: 910px;
       &__fild{
+        #image-form-edit {
+          #previews img {
+            @include image;
+          }
+        }
         #image-form {
           #previews img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
+            @include image;
             margin: 3px;
           }
         }

@@ -7,7 +7,7 @@
           .item-content__fild__dt
             .item-content__fild__dt__label 出品画像
             .item-content__fild__dt__required 必須
-          #image-form
+          #image-form-edit
             #previews
               - if @item.persisted?
                 - @item_images.each_with_index do |image, i|
