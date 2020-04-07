@@ -36,14 +36,14 @@
             .item-content__fild__dt__label カテゴリー
             .item-content__fild__dt__required 必須
           .item-content__text-select
-            = f.collection_select :category, Category.all, :id, :name, { prompt: "---" }, { class: "category_select-box", id: "category_select" }
+            = f.collection_select :category, Category.all.order("id ASC").limit(13), :id, :name, { prompt: "---" }, { class: "category_select-box", id: "category_select" }
           .product_select-children
         .item-content__fild
           .item-content__fild__dt
             .item-content__fild__dt__label サイズ
             .item-content__fild__dt__any 任意
         .item-content__text-select
-          = f.collection_select :size_id, Size.all, :id, :size
+          = f.collection_select :size_id, Size.all, :id, :size, { prompt: "---" }
           .item-content__fild
             .item-content__fild__dt
               .item-content__fild__dt__label ブランド
