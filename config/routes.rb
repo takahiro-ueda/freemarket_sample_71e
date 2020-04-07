@@ -29,6 +29,7 @@ Rails.application.routes.draw do
         post 'pay', to: 'purchase#pay'
       end
     end
+    resources :comments, only: [:index, :create]
   end
 
 end
