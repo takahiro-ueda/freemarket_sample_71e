@@ -32,12 +32,3 @@ Rails.application.routes.draw do
   end
 
 end
-
-resources :items, only: [:index,:new,:create] 
-  resources :categories ,only: :new
-  resources :items do 
-    collection do
-      get 'category_children', defaults: { format: 'json' }
-      get 'category_grandchildren', defaults: { format: 'json' }
-    end
-  end
