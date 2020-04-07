@@ -90,9 +90,8 @@ class ItemsController < ApplicationController
   def set_item_images
     @item_images = @item.item_images
   end
-end
 
-before_action :set_item, only: [:show, :destroy]
+  before_action :set_item, only: [:show, :destroy]
 before_action :set_category, only: :new
 
 :category_parent_id,
@@ -110,3 +109,5 @@ def set_category
   end
   # Ajax通信で送られてきたデータをparamsで受け取り､childrenで孫を取得｡（実際には子カテゴリーの子になる｡childrenは子を取得するメソッド)
 end
+end
+
