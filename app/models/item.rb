@@ -14,7 +14,7 @@ class Item < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   
-  validates :category_id, :name, :introduction, :price, :seller_id, presence: true
+  validates :category_id, :name, :introduction, :price, :seller_id, :item_images, presence: true
 
   validates :name,
     length: { maximum:40, message: "入力は４０文字までです。"}

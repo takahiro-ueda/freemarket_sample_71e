@@ -9,11 +9,10 @@
   box-sizing: border-box;
 }
 
-@mixin item-content-box {
-  margin: 0 auto;
-  background-color: white;
-  border-bottom: solid 1px #f8f8f8;
-  padding: 40px;
+@mixin image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
 }
 
 body {
@@ -36,14 +35,22 @@ body {
   .main {
     margin: 0 auto;
     .item-content {
-      @include item-content-box;
+      margin: 0 auto;
+      background-color: white;
+      border-bottom: solid 1px #f8f8f8;
+      padding: 10px 40px;
       width: 910px;
-      &__fild{
+      &__fild-edit {
         #image-form {
           #previews img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
+            @include image;
+          }
+        }
+      }
+      &__fild {
+        #image-form {
+          #previews img {
+            @include image;
             margin: 3px;
           }
         }
@@ -117,6 +124,24 @@ body {
           width: 100%;
           height: 45px;
           margin: 1px;
+          padding: 10px;
+          border: solid 1px #ccc;
+          border-radius: 5px;
+          background-color: white;
+        }
+        .product_select-children select { 
+          width: 90%;
+          height: 45px;
+          margin: 1%;
+          padding: 10px;
+          border: solid 1px #ccc;
+          border-radius: 5px;
+          background-color: white;
+        }
+        .product_select-grandchildren select { 
+          width: 90%;
+          height: 45px;
+          margin: 1%;
           padding: 10px;
           border: solid 1px #ccc;
           border-radius: 5px;

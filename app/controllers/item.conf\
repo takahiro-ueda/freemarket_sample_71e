@@ -1,0 +1,18 @@
+before_action :set_item, only: [:show, :destroy]
+before_action :set_category, only: :new
+
+:category_parent_id,
+:category_root_id,
+item_images_attributes: [:image, :_destroy, :id]
+
+def set_category
+  @category = Category.all.order("id ASC").limit(13) # categoryの親を取得
+  def category_children  
+    @category_children = Category.find(params[:productcategory]).children 
+  end
+  # Ajax通信で送られてきたデータをparamsで受け取り､childrenで子を取得
+  def category_grandchildren
+    @category_grandchildren = Category.find(params[:productcategory]).children
+  end
+  # Ajax通信で送られてきたデータをparamsで受け取り､childrenで孫を取得｡（実際には子カテゴリーの子になる｡childrenは子を取得するメソッド)
+end
