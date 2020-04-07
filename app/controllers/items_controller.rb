@@ -90,6 +90,4 @@ class ItemsController < ApplicationController
   def set_item_images
     @item_images = @item.item_images
   end
-  
 end
-
