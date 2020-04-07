@@ -217,15 +217,47 @@
           display: inline-block;
           float: left;
           background-color: white;
-          .sub_image {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
+          font-size: 16px;
+          font-weight: bold;
+          position: relative;
+          overflow: hidden; 
+          text-align: center;
+          text-decoration: none;
+          :after {
+            z-index: 1;
+            content: 'SOLD OUT';
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: red;
+            width: 100%;
+            height: 100%;
+            -webkit-transition: all .4s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+            transition: all .4s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+            -webkit-transform: rotateX(180deg);
+            transform: rotateX(180deg);
+            -webkit-transform-origin: top center;
+            transform-origin: top center;
+            color: white;
+          }
+          :hover:after {
+            -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
           }
           .soldout{ /* 2020/3/28 高田追記 */
             background-color: red;
             color: white;
             text-align: center;
+          }
+          .sub_image_1 {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+          }
+          .sub_image_2 {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
           }
 
           &--body{
