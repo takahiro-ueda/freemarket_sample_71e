@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }
@@ -21,6 +20,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :categories ,only: [:new]
 
   resources :items do
     resources :purchase, only: [:index] do
@@ -29,6 +29,9 @@ Rails.application.routes.draw do
         post 'pay', to: 'purchase#pay'
       end
     end
+    collection do
+      get 'category_children', defaults: { format: 'json' }
+      get 'category_grandchildren', defaults: { format: 'json' }
+    end
   end
-
 end
