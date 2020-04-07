@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   before_action :set_item, except: [:index, :new, :create]
   before_action :set_item, only: [:show, :destroy]
+  before_action :set_category, only: :new
+  
   def index
     @items = Item.includes(:item_images).order(created_at: "DESC").limit(3)
   end
@@ -8,15 +10,6 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.item_images.new
-    @category = Category.all.order("id ASC").limit(13) # categoryの親を取得
-    def category_children  
-      @category_children = Category.find(params[:productcategory]).children 
-    end
-    # Ajax通信で送られてきたデータをparamsで受け取り､childrenで子を取得
-    def category_grandchildren
-      @category_grandchildren = Category.find(params[:productcategory]).children
-    end
-    # Ajax通信で送られてきたデータをparamsで受け取り､childrenで孫を取得｡（実際には子カテゴリーの子になる｡childrenは子を取得するメソッド)
   end
 
   def create
@@ -81,6 +74,7 @@ class ItemsController < ApplicationController
       :size_id,
       :status_id,
       :brand,
+      item_images_attributes: [:src, :_destroy, :id]
       :category_parent_id,
       :category_root_id,
       item_images_attributes: [:image, :_destroy, :id]
@@ -95,4 +89,15 @@ class ItemsController < ApplicationController
     @items = Item.includes(:images).order(:item_purchaser_id, "id DESC")
   end
   
+  def set_category
+    @category = Category.all.order("id ASC").limit(13) # categoryの親を取得
+    def category_children  
+      @category_children = Category.find(params[:productcategory]).children 
+    end
+    # Ajax通信で送られてきたデータをparamsで受け取り､childrenで子を取得
+    def category_grandchildren
+      @category_grandchildren = Category.find(params[:productcategory]).children
+    end
+    # Ajax通信で送られてきたデータをparamsで受け取り､childrenで孫を取得｡（実際には子カテゴリーの子になる｡childrenは子を取得するメソッド)
+  end
 end
