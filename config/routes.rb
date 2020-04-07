@@ -34,4 +34,11 @@ Rails.application.routes.draw do
       get 'category_grandchildren', defaults: { format: 'json' }
     end
   end
+
+
+  resources :users, only: [:show, :edit, :update] do
+    resources :items, only: [:new, :create, :show] do
+      resources :likes, only: [:create, :destroy]
+    end
+  end
 end

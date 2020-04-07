@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_one :address
   has_many :items
   has_many :comments
+  has_many :likes, dependent: :destroy
   validates :nickname, length: { maximum: 6 }
 end
 

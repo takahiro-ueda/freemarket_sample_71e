@@ -171,9 +171,9 @@
                     = @duration.name
           .main__show__contents__range__item__optionalArea
             .main__show__contents__range__item__optionalArea__likeBtn
-              .main__show__contents__range__item__optionalArea__likeBtn__Btn
-                = icon('fa', 'star',class: 'icon')
-                = link_to "お気に入り 0"
+              -# .main__show__contents__range__item__optionalArea__likeBtn__Btn
+              = render partial: 'likes/like', locals: { item: @item, items: @items, likes: @likes, like: @like}
+                
             .main__show__contents__range__item__optionalArea__optional
               .main__show__contents__range__item__optionalArea__optional__Btn
                 = icon('fa', 'flag',class: 'icon')
