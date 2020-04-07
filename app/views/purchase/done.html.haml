@@ -52,11 +52,9 @@
         発送通知後の流れ
       .purchase__all__description__content__face
         .purchase__all__description__content__face__icons
-          = icon('fas', 'smile', class: 'item__detailpage__box__main__text__box__content__icons__1')
-        .purchase__all__description__content__face__icons__text
-          = icon('fas', 'meh', class: 'item__detailpage__box__main__text__box__content__icons__2')
-        .purchase__all__description__content__face__icons__text
-          = icon('fas', 'frown', class: 'item__detailpage__box__main__text__box__content__icons__3')
+          = icon('fas', 'smile', class: 'purchase__all__description__content__face__icons__1')
+          = icon('fas', 'meh', class: 'purchase__all__description__content__face__icons__2')
+          = icon('fas', 'frown', class: 'purchase__all__description__content__face__icons__3')
       .purchase__all__description__face__1
         商品を受け取ったら
       .purchase__all__description__face__2
@@ -66,17 +64,17 @@
       .purchase__all__descriotion__face__4
         評価後に取引は完了です。
     .purchase__all__link
-      =link_to "トップページへもどる",root_path
+      =link_to "トップページへもどる",root_path, class:"purchase__all__link__button"
 .purchase__bottom
   .purchase__bottom__terms
     .purchase__bottom__terms__1
       = link_to 'プライバシーポリシー','#'
     .purchase__bottom__terms__2
-      = link_to 'カリメル利用規約','#'
+      = link_to 'フリマ利用規約','#'
     .purchase__bottom__terms__3
       = link_to '特定取引に関する表記'
   .purchase__bottom__icon
     .purchase__bottom__icon__1
-      = link_to image_tag("logo.png",size:"100x65",class:"confirmation__icon__1")
+      = link_to image_tag("logo.png",size:"185x65",class:"confirmation__icon__1")
       .purchase__bottom__icon__1__text
         © FURIMA. 

@@ -1,12 +1,13 @@
 .productlists
   - items.each do |item|
     -if item.buyer_id.present?
-      .productlists__productlist
+      .productlists__soldout
+        -# %h3.figcaption "SOLD OUT"
         %p.soldout SOLD OUT
         %figure
           - item.item_images.first(1).each do |image|
-            = image_tag "#{image.src}", class: :sub_image, height: '150px', width: '156px'
-        .productlist--body
+            = image_tag "#{image.src}", class: :sub_image_1, height: '150px', width: '156px'
+        .productlists__soldout--body
           %h3.name
             = item.name
           .details
@@ -19,13 +20,13 @@
                 0
             %p (税込)  
     -else
-      .productlist
-        %p.sale "売り出し中"
+      .productlists__sale
+        %p.sale 売り出し中
         = link_to item_path(item), method: :get do
           %figure
             - item.item_images.first(1).each do |image|
-              = image_tag "#{image.src}", class: :sub_image, height: '150px', width: '156px'
-          .productlist--body
+              = image_tag "#{image.src}", class: :sub_image_2, height: '150px', width: '156px'
+          .productlists__sale--body
             %h3.name
               = item.name
             .details
@@ -37,3 +38,12 @@
                   = image_tag 'star.svg', height: '15px', width: '15px'
                   0
               %p (税込)
+
+
+-# <figure>
+-#   <img src="image.jpg" />
+-#   <figcaption>
+-#     <h3>Caption Title</h3>
+-#     <p>caption text here ...</p>
+-#   </figcaption>
+-# </figure>
