@@ -36,7 +36,7 @@
             .item-content__fild__dt__label カテゴリー
             .item-content__fild__dt__required 必須
           .item-content__text-select
-            = f.collection_select :category, @category, :id, :name, { prompt: "---" }, { class: "category_select-box", id: "category_select" }
+            = f.collection_select :category, Category.all, :id, :name, { prompt: "---" }, { class: "category_select-box", id: "category_select" }
           .product_select-children
         .item-content__fild
           .item-content__fild__dt
