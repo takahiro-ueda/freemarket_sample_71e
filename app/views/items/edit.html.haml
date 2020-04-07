@@ -3,15 +3,25 @@
     .main
       .item-content
         = render "devise/shared/error_messages", resource: @item
-        .item-content__fild
+        .item-content__fild-edit
           .item-content__fild__dt
             .item-content__fild__dt__label 出品画像
             .item-content__fild__dt__required 必須
           #image-form
             #previews
-            = f.fields_for :item_images do |i|
-              .js-box{data: { index: i.index }}
-                = i.file_field :src, class: "js-file"
+              - if @item.persisted?
+                - @item_images.each_with_index do |image, i|
+                  = image_tag image.src.url, data: { index: i }
+            = f.fields_for :item_images do |image|
+              .js-box{data: { index: image.index }}
+                = image.file_field :src, class: "js-file" 
+                %br/
+                %span.js-remove 削除
+              - if @item.persisted?
+                = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+            - if (@item.persisted? && @item_images.length < 4)
+              .js-box{ data:{ index: @item.item_images.count } }
+                = f.file_field :src, name: "item[item_images_attributes][#{@item.item_images.count}][src]", class: "js-file" 
                 %br/
                 %span.js-remove 削除
       -# 商品名/商品説明
@@ -36,8 +46,8 @@
             .item-content__fild__dt__label カテゴリー
             .item-content__fild__dt__required 必須
           .item-content__text-select
-            = f.collection_select :category, @category, :id, :name, { prompt: "---" }, { class: "category_select-box", id: "category_select" }
-          .product_select-children
+            = f.collection_select :category_id, Category.all, :id, :name
+
         .item-content__fild
           .item-content__fild__dt
             .item-content__fild__dt__label サイズ

@@ -4,7 +4,7 @@
 @mixin list-btn {
   min-height: 48px;
   display: block;
-  padding: 16px;
+  padding: 16px 26px 16px 16px;
   font-size: 14px;
   color: #333;
   background-color: #fff;
@@ -27,10 +27,11 @@
   overflow: scroll;
   &__content {
     width: 1020px;
-    margin: 40px 200px ;
+    margin: 40px auto ;
+    display: flex;
+    justify-content: space-between;
     &__side {
-      float: left;
-      width: 280px;
+      width: 230px;
       margin-right: 40px;
       &__nav {
         margin: 0 ;
@@ -55,36 +56,15 @@
             color: #111;
           }
         }
-      }
-      .mypage__content__side__nav__setting {
-        font-size: 16px;
-        margin: 40px 0 0;
-        font-weight: bold;
-        &__list {
-          list-style: none;
-          & li {
-            margin: 1px 0;
-          }
-          & a {
-            @include list-btn;
-          }
-          & a:hover {
-            background: #f9f9f9; 
-          }
-          & i {
-            @include list-icon;
-          }
-          & a:hover i {
-            transition: all ease-out .3s;
-            transform: translate(70%, 0);
-            color: #111;
-          }
+        &__setting {
+          font-size: 16px;
+          margin: 40px 0 0;
+          font-weight: bold;
         }
       }
     }
     &__main {
-      float: right;
-      width: 700px;
+      width: 100%;
       &__user {
         padding: 20px;
         position: relative;
@@ -163,7 +143,9 @@
       &__container {
         margin-top: 40px;
         background: #fff;
+        width: 100%;
         &__header {
+          text-align: center;
           line-height: 72px;
           padding: 0 16px;
           font-weight: bold;
@@ -178,20 +160,12 @@
             color: black;
             text-decoration: none;
           }
-          &__1 {
+          .tab-menu {
+            border: 1px solid white;
             display: flex;
             width: 50%;
             height: 80px;
             align-items: center;
-            text-align: center;
-            justify-content: center;
-          }
-          &__2 {
-            display: flex;
-            width: 50%;
-            height: 80px;
-            align-items: center;
-            border-left: #f5f5f5 solid 1px;
             text-align: center;
             justify-content: center;
           }
@@ -199,6 +173,9 @@
         &__content {
           display: flex;
           width: 100%;
+          #mypage-item-list {
+            width: 100%;
+          }
           .mypage-list-item {
             border-bottom: 1px solid #eee;
             &__link {
@@ -227,12 +204,13 @@
               }
             }
             &__text {
+              width: 100%;
               position: relative;
               margin-left: 20px;
               margin-right: 40px;
               & div {
                 height: 42px;
-                width: 560px;
+                width: 100%;
               }
               & time {
                 position: absolute;

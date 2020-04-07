@@ -258,34 +258,34 @@
       }
     }
   }
-  &__bottom {
-    width: 456px;
-    height: 220px;
-    margin: 0 auto;
-    padding: 20px 0;
-    text-align: center;
-    &__terms {
+}
+.purchase__bottom {
+  width: 456px;
+  height: 220px;
+  margin: 0 auto;
+  padding: 20px 0;
+  text-align: center;
+  &__terms {
+    display: flex;
+    font-size: 12px;
+    justify-content: space-between;
+    padding: 0 30px;
+    &__1 {
       display: flex;
-      font-size: 12px;
-      justify-content: space-between;
-      padding: 0 30px;
-      &__1 {
-        display: flex;
-      }
-      &__2 {
-        display: flex;
-      }
-      &__3 {
-        display: flex;
-      }
     }
-    &__icon {
-      &__1 {
-        padding-top: 20px;
-        &__text {
-          font-size: 12px;
-        }
+    &__2 {
+      display: flex;
+    }
+    &__3 {
+      display: flex;
+    }
+  }
+  &__icon {
+    &__1 {
+      padding-top: 20px;
+      &__text {
+        font-size: 12px;
       }
     }
   }
-}
+} 

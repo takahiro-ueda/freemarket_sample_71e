@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   end
   root 'items#index'
   resources :users, :only => [:index, :show,]
-  
+
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :address, only: [:show, :edit, :update]
 
   resources :credit, only: [:new, :show] do

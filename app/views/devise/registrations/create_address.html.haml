@@ -1,2 +1,6 @@
-%h2 登録が完了しました
-= link_to'トップへ戻る', root_path
+.address__done
+  = image_tag("bg-appBanner-pict.jpg", class: "address__done__image") 
+  .address__done__content
+    .address__done__content__text
+      %h2 登録が完了しました
+    = link_to"トップへ戻る", root_path, class:"address__done__content__button"

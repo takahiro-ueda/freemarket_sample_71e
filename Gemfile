@@ -82,9 +82,10 @@ gem 'fog-aws'
 gem 'devise'
 gem 'active_hash'
 
-gem 'ancestry' # 2020/3/25 高田追記(カテゴリー作成の為)
-gem 'jquery-rails' # 2020/3/25 高田追記(jQuery使用の為)
-gem 'jquery-turbolinks' # 2020/3/25 高田追記(jQuery使用の為)
+gem 'ancestry'
+gem 'jquery-rails'
+gem 'jquery-turbolinks'
 
-gem 'payjp' #2020/3/30 植田追記(クレジット購入機能で使用のため)
-gem 'dotenv' #2020/3/30 植田追記(pay.jpの公開鍵、秘密鍵格納するため)
+gem 'payjp'
+gem 'dotenv'
+gem 'gretel'

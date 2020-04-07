@@ -8,6 +8,13 @@
 * {
   box-sizing: border-box;
 }
+
+@mixin image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
 body {
   background-color: #f8f8f8;
 }
@@ -25,16 +32,28 @@ body {
 
 .container {
   width: 100%;
-  padding-bottom: 370px;
   .main {
     margin: 0 auto;
     .item-content {
-      width: 900px;
       margin: 0 auto;
       background-color: white;
       border-bottom: solid 1px #f8f8f8;
-      padding: 40px;
-      &__fild{
+      padding: 10px 40px;
+      width: 910px;
+      &__fild-edit {
+        #image-form {
+          #previews img {
+            @include image;
+          }
+        }
+      }
+      &__fild {
+        #image-form {
+          #previews img {
+            @include image;
+            margin: 3px;
+          }
+        }
         .note {
           color: gray;
           font-size: 14px;
@@ -85,26 +104,26 @@ body {
         }
       }
         &__text-fild input {
-          width: 90%;
+          width: 100%;
           height: 45px;
-          margin: 1%;
+          margin: 1px;
           padding: 10px;
           border: solid 1px #ccc;
           border-radius: 5px;
         }
       
         &__text-area textarea {
-          width: 90%;
+          width: 100%;
           height: 200px;
-          margin: 1%;
+          margin: 1px;
           padding: 10px;
           border: solid 1px #ccc;
           border-radius: 5px;
         }
         &__text-select select {
-          width: 90%;
+          width: 100%;
           height: 45px;
-          margin: 1%;
+          margin: 1px;
           padding: 10px;
           border: solid 1px #ccc;
           border-radius: 5px;
