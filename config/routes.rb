@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :items
   resources :address, only: [:show, :edit, :update]
-  resources :items, only: [:index,:new,:create] 
+
   resources :credit, only: [:new, :show] do
     collection do
       post 'show', to: 'credit#show'
@@ -20,6 +20,17 @@ Rails.application.routes.draw do
       post 'delete', to: 'credit#delete'
     end
   end
+
+
+  resources :items do
+    resources :purchase, only: [:index] do
+      collection do
+        get 'done', to: 'purchase#done'
+        post 'pay', to: 'purchase#pay'
+      end
+    end
+  end
+
 end
 
 resources :categories ,only: :new

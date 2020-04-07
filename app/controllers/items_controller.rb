@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, except: [:index, :new, :create]
+  before_action :set_item, only: [:show, :destroy,:edit,:update]
+  before_action :set_item_images, only: [:edit, :update]
   def index
     @items = Item.includes(:item_images).order(created_at: "DESC").limit(3)
   end
@@ -13,11 +15,13 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     unless @item.valid?
       flash.now[:alert] = @item.errors.full_messages
+      @item.item_images.new
       render :new and return
     end
     if @item.save
       redirect_to root_path
     else
+      @item.item_images.new
       render :new
     end
   end
@@ -26,10 +30,14 @@ class ItemsController < ApplicationController
   end
 
   def update
+    unless @item.valid?
+      flash.now[:alert] = @item.errors.full_messages
+      render :edit and return
+    end
     if @item.update(item_params)
       redirect_to root_path
     else
-      render :edit
+      render :edit and return
     end
   end
 
@@ -79,12 +87,11 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def set_items_image
-    @items = Item.includes(:images).order(:item_purchaser_id, "id DESC")
+  def set_item_images
+    @item_images = @item.item_images
   end
-  
-  
 end
+
 
 before_action :set_item, only: [:show, :destroy]
 before_action :set_category, only: :new
