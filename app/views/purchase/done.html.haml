@@ -15,7 +15,7 @@
         購入が完了しました
     .purchase__all__images
       .purchase__all__images__content
-        = image_tag "#{@item.item_images.first.image}",size:"100x100"
+        = image_tag "#{@item.item_images.first.src}",size:"100x100"
       .purchase__all__images__name
         = @item.name
     .purchase__all__price

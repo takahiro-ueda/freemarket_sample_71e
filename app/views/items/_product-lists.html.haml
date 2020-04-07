@@ -1,7 +1,7 @@
 .productlists
-  - @items.each do |item|
+  - items.each do |item|
     -if item.buyer_id.present?
-      .productlist
+      .productlists__productlist
         %p.soldout SOLD OUT
         %figure
           - item.item_images.first(1).each do |image|

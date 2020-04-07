@@ -7,7 +7,7 @@
         購入内容の確認
       %section.confirmation__main__item
         .confirmation__main__item__image
-          = image_tag "#{@item.item_images.first.image}",size:"100x100"
+          = image_tag "#{@item.item_images.first.src}",size:"100x100"
         .confirmation__main__item__content
           %p.confirmation__main__item__content__text
             = @item.name
