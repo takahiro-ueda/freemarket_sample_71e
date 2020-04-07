@@ -13,19 +13,19 @@ Rails.application.routes.draw do
   resources :items
   resources :address, only: [:show, :edit, :update]
   resources :items, only: [:index,:new,:create] 
-  resources :categories ,only: :new
-  resources :items do 
-    collection do
-      get 'category_children', defaults: { format: 'json' }
-      get 'category_grandchildren', defaults: { format: 'json' }
-    end
-  end
-
   resources :credit, only: [:new, :show] do
     collection do
       post 'show', to: 'credit#show'
       post 'pay', to: 'credit#pay'
       post 'delete', to: 'credit#delete'
     end
+  end
+end
+
+resources :categories ,only: :new
+resources :items do 
+  collection do
+    get 'category_children', defaults: { format: 'json' }
+    get 'category_grandchildren', defaults: { format: 'json' }
   end
 end
