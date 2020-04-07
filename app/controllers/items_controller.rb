@@ -45,6 +45,9 @@ class ItemsController < ApplicationController
     @duration = @item.duration
     @comment = Comment.new
     @comments = @item.comments.includes(:user)
+    @like = 0
+    @likes = Like.where(item_id: params[:id])
+
   end
 
   def destroy

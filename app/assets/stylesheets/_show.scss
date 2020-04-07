@@ -182,6 +182,22 @@
                   color: #3CCACE;
                 }
               }
+              &__like {
+                margin-right: auto;
+                padding: 6px 10px;
+                border-radius: 40px;
+                color: #3CCACE;
+                border: 1px solid #ffb340;
+                a {
+                  text-decoration: none;
+                  color: red;
+                }
+                .icon {
+                  color: red;
+                  float: left;
+                  padding: 2px;
+                }
+              }
             }
             &__optional { 
               &__Btn {

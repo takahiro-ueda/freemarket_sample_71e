@@ -66,6 +66,7 @@ Things you may want to cover:
 - has_one :address
 - has_many :items
 - has_many :comments
+- has_many :likes
 
 ## commentsテーブル（コメント）
 |Column|Type|Options|
@@ -111,6 +112,7 @@ Things you may want to cover:
 - has_many :item_images, dependent: :destroy
 - has_many :comments, dependent: :destroy
 - accepts_nested_attributes_for :item_images, allow_destroy: true
+- has_many :likes
 
 ## Categoriesテーブル（カテゴリー）
 |Column|Type|Options|
@@ -140,3 +142,13 @@ Things you may want to cover:
 ### Association
 - has_many :categories
 - has_many :items
+
+## Likesテーブル（お気に入り）
+|Column|Type|Options|
+|------|----|-------|
+|item_id|references|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
+
+### Association
+- belongs_to :user
+- belongs_to :item

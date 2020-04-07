@@ -1,0 +1,20 @@
+- if user_signed_in?
+  -# #ログインしているユーザーがすでに「いいね」しているかどうか
+  - if item.like_user(current_user.id)
+    .main__show__contents__range__item__optionalArea__likeBtn__like
+      =link_to user_item_like_path(current_user, item, like), method: "DELETE", remote: true do
+        = icon('fa', 'star',class: 'icon')
+        お気に入り
+        = likes.count
+  - else
+    .main__show__contents__range__item__optionalArea__likeBtn__Btn
+      =link_to user_item_likes_path(current_user, item), method: "POST", remote: true do
+        = icon('fa', 'star',class: 'icon')
+        お気に入り
+        = likes.count
+
+-else
+  .main__show__contents__range__item__optionalArea__likeBtn__Btn
+    = icon('fa', 'star',class: 'icon')
+    お気に入り
+    = likes.count

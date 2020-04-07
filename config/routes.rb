@@ -31,4 +31,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users, only: [:show, :edit, :update] do
+    resources :items, only: [:new, :create, :show] do
+      resources :likes, only: [:create, :destroy]
+    end
+  end
+
 end
