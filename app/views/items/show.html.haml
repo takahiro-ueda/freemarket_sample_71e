@@ -181,34 +181,29 @@
         .main__show__contents__range__comment
           .main__show__contents__range__comment__commentBox
             .main__show__contents__range__comment__commentBox__new
+              %h4 コメント一覧
               .main__show__contents__range__comment__commentBox__new__text
-                %textarea.inputs
               .main__show__contents__range__comment__commentBox__new__noticeMsg
                 相手ことを考え丁寧なコメントを心崖ましょう。
                 %br/
                 不快な言葉遣いなどは利用制限や退会処分となることがあります。
                 %br/            
               = link_to "#", class: "comment-btn" do
+                %textarea.inputs
                 .main__show__contents__range__comment__commentBox__new__Btn
                   = icon('fas', 'comment', class: 'item-detail-message__btn__icon')
                   %span.comment-btn コメントする
           .main__show__contents__range__comment__comments
-            %h4 コメント一覧
-            .main__show__contents__range__comment__comments__box
-            = @comments.each do |comment|
-              %p
-                %strong
-                = link_to comment.user.nickname, "/users/#{comment.user_id}"
-                = comment.text
-        .main__show__contents__range__links           
-          = link_to "#", class: "before" do
-            .main__show__contents__range__links__before
-            = icon('fa', 'angle-left',class: 'icon')
-            %span.Before 前の商品
-          = link_to "#", class: "after" do
-            .main__show__contents__range__links__after
-            %span.after 次の商品
-            = icon('fa', 'angle-right',class: 'icon')
-        .main__show__contents__range__relatedItems
-          = link_to "メンズをもっと見る", "#"
-          .main__show__contents__range__relatedItems__produtLists
+            .main__show__contents__range__comment__comments__text
+              = form_for [@item, @comment] do |f|
+                = f.text_field :text, class: 'input-box__text', placeholder: 'comment'
+                = icon('fas', 'comment', class: 'item-detail-message__btn__icon')
+                = f.submit 'コメントする', class: 'submit-btn'
+                
+          -# .main__show__contents__range__comment__box
+          -# = @comments.each do |comment|
+          -#   %p
+          -#     %strong
+          -#     = link_to comment.user.nickname, "/users/#{comment.user_id}"
+          -#     = comment.text
+      

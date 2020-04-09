@@ -56,6 +56,10 @@ class ItemsController < ApplicationController
     @like = 0
     @likes = Like.where(item_id: params[:id])
 
+    @item = Item.find(params[:id])
+    @comments = @item.comments
+    @comment = @item.comments.build
+    
   end
 
   def destroy

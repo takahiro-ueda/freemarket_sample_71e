@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2020_04_06_055601) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "text", null: false
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "item_id", null: false
@@ -48,7 +49,7 @@ ActiveRecord::Schema.define(version: 2020_04_06_055601) do
   end
 
   create_table "credits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "number", null: false
+    t.string "number", null: false
     t.bigint "user_id", null: false
     t.string "customer_id", null: false
     t.datetime "created_at", null: false
@@ -99,11 +100,9 @@ ActiveRecord::Schema.define(version: 2020_04_06_055601) do
   end
 
   create_table "sizes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "category_id", null: false
     t.string "size", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_sizes_on_category_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -130,5 +129,4 @@ ActiveRecord::Schema.define(version: 2020_04_06_055601) do
   add_foreign_key "items", "sizes"
   add_foreign_key "items", "users", column: "buyer_id"
   add_foreign_key "items", "users", column: "seller_id"
-  add_foreign_key "sizes", "categories"
 end
