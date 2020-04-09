@@ -40,10 +40,27 @@ body {
       border-bottom: solid 1px #f8f8f8;
       padding: 10px 40px;
       width: 910px;
-      &__fild-edit {
-        #image-form {
-          #previews img {
+      &__fild {
+        #previews {
+          height: 200px;
+          width: 100%;
+          img {
             @include image;
+          }
+        }
+        #image-form {
+          display: flex;
+          .js-box{
+            display: flex;
+            justify-content: space-between;
+            height: 30px;
+            width: 200px;
+            padding: 0 20px;
+            .js-form{
+            }
+            .js-file{
+              display: none;
+            }
           }
         }
       }

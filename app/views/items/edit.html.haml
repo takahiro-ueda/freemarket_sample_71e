@@ -3,27 +3,31 @@
     .main
       .item-content
         = render "devise/shared/error_messages", resource: @item
-        .item-content__fild-edit
+        .item-content__fild
           .item-content__fild__dt
             .item-content__fild__dt__label 出品画像
             .item-content__fild__dt__required 必須
+          #previews
+            - if @item.persisted?
+              - @item_images.each_with_index do |image, i|
+                = image_tag image.src.url, data: { index: i }
           #image-form
-            #previews
-              - if @item.persisted?
-                - @item_images.each_with_index do |image, i|
-                  = image_tag image.src.url, data: { index: i }
             = f.fields_for :item_images do |image|
-              .js-box{data: { index: image.index }}
-                = image.file_field :src, class: "js-file" 
-                %br/
-                %span.js-remove 削除
+              .js-box{data: { index: "#{image.index}" }}
+                .js-form
+                  = image.label :src, class: 'js-label' do
+                    %h 編集
+                    = image.file_field :src, name: "item[item_images_attributes][#{image.index}][src]", class: "js-file" 
+                .js-remove 削除
               - if @item.persisted?
-                = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+                = image.check_box :_destroy, data:"#{image.index}", class: 'hidden-destroy'
             - if (@item.persisted? && @item_images.length < 4)
               .js-box{ data:{ index: @item.item_images.count } }
-                = f.file_field :src, name: "item[item_images_attributes][#{@item.item_images.count}][src]", class: "js-file" 
-                %br/
-                %span.js-remove 削除
+                .js-form
+                  = f.label :src, class: 'js-label' do
+                    %h 編集
+                    = f.file_field :src, name: "item[item_images_attributes][#{@item.item_images.count}][src]", class: "js-file" 
+                .js-remove 削除
       -# 商品名/商品説明
       .item-content
         .item-content__fild
