@@ -1,0 +1,49 @@
+.pcHeader__headerInner
+  .pcHeader__headerInner__mainHeader
+    %a(href="/")
+      = image_tag 'logo.png', height: '40px', width: '150px', alt: 'icon', class: 'pcHeader__headerInner__mainHeader__app'
+    .pcHeader__headerInner__mainHeader__searchBox
+      = text_field_tag '', '', placeholder: 'キーワードから探す', class: 'pcHeader__headerInner__mainHeader__searchBox__box'
+      .pcHeader__headerInner__mainHeader__searchBox__btn
+        %a(href="#")
+          = image_tag 'icon-search 1.png', height: '100%', width: '100%', alt: 'search'
+
+  .pcHeader__headerInner__nav
+    %ul{:class => "pcHeader__headerInner__nav__listLeft"}
+      %li{:class => "pcHeader__headerInner__nav__listLeft__first"}
+        =link_to "#" do
+          カテゴリー
+        -# 親カテゴリーの大枠
+        %ul{:class => "pcHeader__headerInner__nav__listLeft__first__parents"}
+          - @parents.each do |parent|
+            -#親カテゴリの中身
+            %li{:class => "pcHeader__headerInner__nav__listLeft__first__parents__parent"}
+              =link_to "#" do
+                =parent.name
+              -#子カテゴリの大枠
+              %ul{:class => "pcHeader__headerInner__nav__listLeft__first__parents__parent__children"}
+                - parent.children.each do |child|
+                  -#子カテゴリの中身
+                  %li{:class => "pcHeader__headerInner__nav__listLeft__first__parents__parent__children__child"}
+                    =link_to "#" do
+                      = child.name
+                    -#孫カテゴリの大枠
+                    %ul{:class => "pcHeader__headerInner__nav__listLeft__first__parents__parent__children__child__grandchildren"}
+                      - child.children.each do |grandchild|
+                        -#孫カテゴリの中身
+                        %li{:class => "pcHeader__headerInner__nav__listLeft__first__parents__parent__children__child__grandchildren__grandchild"}
+                          =link_to "#" do
+                            =grandchild.name
+      %li{:class => "pcHeader__headerInner__nav__listLeft__item"}
+        %a(href="#")ブランド
+    %ul{:class => "pcHeader__headerInner__nav__listRight"}
+      - if user_signed_in?
+        %li{:class => "pcHeader__headerInner__nav__listLeft__first"}
+          = link_to "マイページ", user_path(current_user.id)
+      - else
+        %li{:class => "pcHeader__headerInner__nav__listLeft__first"}
+          = link_to "ログイン", new_user_session_path
+        %li{:class => "pcHeader__headerInner__nav__listLeft__item"}
+          = link_to "新規会員登録", new_user_registration_path
+.breadcrumbs
+  = breadcrumbs separator: " &nbsp;&nbsp;&#62;&nbsp; "

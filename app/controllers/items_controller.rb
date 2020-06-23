@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :destroy,:edit,:update]
   before_action :set_item_images, only: [:edit, :update]
   before_action :set_category, only: :new
+  before_action :category_list
   def index
     @items = Item.includes(:item_images).order(created_at: "DESC").limit(3)
   end
@@ -97,20 +98,8 @@ class ItemsController < ApplicationController
     @item_images = @item.item_images
   end
 
-  def set_category
-    @category = Category.all.order("id ASC").limit(13) # categoryの親を取得
-    def category_children  
-      @category_children = Category.find(params[:productcategory]).children 
-    end
-    # Ajax通信で送られてきたデータをparamsで受け取り､childrenで子を取得
-    def category_grandchildren
-      @category_grandchildren = Category.find(params[:productcategory]).children
-    end
-    # Ajax通信で送られてきたデータをparamsで受け取り､childrenで孫を取得｡（実際には子カテゴリーの子になる｡childrenは子を取得するメソッド)
+  def category_list
+    @parents = Category.where(ancestry: nil)
   end
+
 end
-
-
-
-
-
