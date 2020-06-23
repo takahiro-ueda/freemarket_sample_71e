@@ -10,7 +10,7 @@ $(function(){
                         <select class="category_select-box" id="child_category" name="item[category_id]">
                         <option value="---">---</option>
                         ${insertHTML}
-                        </select>
+                        </select> 
                         </div>
                         <div class= 'product_select-grandchildren'>
                         </div>
